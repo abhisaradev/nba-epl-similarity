@@ -1,0 +1,29 @@
+# ── Data files — NOT redistributed (large and/or not ours to share) ──────────
+# Source datasets
+male_players.csv
+male_teams.csv
+male_players (legacy).csv
+fifa*.csv
+PL_Stats_2023*.csv
+NBA_Stats_*.csv
+
+# Generated / merged tables
+*_merged.csv
+soccer.csv
+nba.csv
+soccer_bio_2023.csv
+nba_bio_2023.csv
+nba_tracking_2023.csv
+archetype_assignments.csv
+comps_preview.csv
+
+# Rendered figures
+*.png
+
+# ── Python cruft ─────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+.DS_Store
+
+# ── Local tooling (not project source) ───────────────────────────────────────
+.claude/
