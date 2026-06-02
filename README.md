@@ -11,6 +11,32 @@ into a percentile rank *inside its own league-season* before any cross-sport
 comparison happens, so "90th-percentile shot volume" means the same thing in both
 sports even though the raw numbers don't.
 
+## Example results
+
+Three cross-sport comps, each player overlaid against their nearest NBA neighbour
+on the seven dimension axes (dashed ring = league median; spoke size scales with
+the query player's defining strengths):
+
+| Erling Haaland → Lauri Markkanen | William Saliba → Anthony Davis | Rodri → Nikola Jokić |
+|:---:|:---:|:---:|
+| ![Haaland vs Markkanen](examples/haaland_vs_markkanen.png) | ![Saliba vs Davis](examples/saliba_vs_davis.png) | ![Rodri vs Jokić](examples/rodri_vs_jokic.png) |
+
+### Discovered cross-sport archetypes (k=6)
+
+Pooled k-means over both sports (`cluster.py`). Five of six clusters mix soccer and
+NBA players — the validation that within-sport normalization makes the sports
+comparable. Cluster 1 is NBA-only (a structural gap, not a GK artifact).
+Full table: [`examples/archetypes_summary.csv`](examples/archetypes_summary.csv).
+
+| # | Archetype (defining axes) | Soccer | NBA | Soccer exemplars | NBA exemplars |
+|---|---|:---:|:---:|---|---|
+| 0 | physicality | 77 | 73 | Ben Mee, Mathias Jørgensen, Levi Colwill | Onyeka Okongwu, Paul Reed, Daniel Theis |
+| 1 | ball progression | 0 | 43 | — *(NBA-only)* | Duop Reath, Jaime Jaquez Jr., Kris Murray |
+| 2 | playmaking | 59 | 61 | Mohammed Kudus, Harry Wilson, James Maddison | Malik Monk, Coby White, Austin Reaves |
+| 3 | defensive effectiveness | 63 | 74 | Danilo, Declan Rice, Jefferson Lerma | Franz Wagner, Jalen Johnson, Aaron Gordon |
+| 4 | scoring threat | 62 | 15 | Lyle Foster, Abdoulaye Doucouré, Jacob Bruun Larsen | Jerami Grant, Corey Kispert, Duncan Robinson |
+| 5 | possession security + playmaking (eff) | 51 | 94 | Ibrahim Sangaré, Oliver Arblaster, Harrison Reed | Julian Champagnie, Shake Milton, Pat Connaughton |
+
 ## The dimensions
 
 Players are scored on **7 core dimensions**, each split into a **volume** axis and

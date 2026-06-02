@@ -1,0 +1,7 @@
+cluster,archetype,n_soccer,n_nba,soccer_exemplars,nba_exemplars
+0,physicality (eff) + physicality (vol),77,73,"Ben Mee, Mathias Jørgensen, Levi Colwill","Onyeka Okongwu, Paul Reed, Daniel Theis"
+1,ball progression (eff) + ball progression (vol),0,43,,"Duop Reath, Jaime Jaquez Jr., Kris Murray"
+2,playmaking (vol) + playmaking (eff),59,61,"Mohammed Kudus, Harry Wilson, James Maddison","Malik Monk, Coby White, Austin Reaves"
+3,defensive effectiveness (vol) + defensive effectiveness (eff),63,74,"Danilo, Declan Rice, Jefferson Lerma","Franz Wagner, Jalen Johnson, Aaron Gordon"
+4,scoring threat (vol) + scoring threat (eff),62,15,"Lyle Foster, Abdoulaye Doucouré, Jacob Bruun Larsen","Jerami Grant, Corey Kispert, Duncan Robinson"
+5,possession security (eff) + playmaking (eff),51,94,"Ibrahim Sangaré, Oliver Arblaster, Harrison Reed","Julian Champagnie, Shake Milton, Pat Connaughton"
