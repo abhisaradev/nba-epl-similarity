@@ -8,13 +8,20 @@ PL_Stats_2023*.csv
 NBA_Stats_*.csv
 
 # Generated / merged tables
+processed/
 *_merged.csv
 soccer.csv
 nba.csv
 soccer_bio_2023.csv
 nba_bio_2023.csv
 nba_tracking_2023.csv
+nbaapi_*.csv
+nba_base_*.csv
+nba_tracking_*.csv
+nba_bio_*.csv
 archetype_assignments.csv
+archetype_drift_assignments.csv
+*.pkl
 comps_preview.csv
 
 # Rendered figures

@@ -100,33 +100,107 @@ breakdown.py     per-axis "close HOW?" comparison between two players
 radar.py         overlaid radar chart of two players across the axes
 cluster.py       pooled k-means → archetype_assignments.csv
 config.py        dimension schema (the one place to re-wire stats → axes)
+drift.py         frozen archetypes + structural drift over 9 NBA seasons (v2)
+era_trends.py    raw league-average style trends over time (v2)
 ```
 
 Run order: `python ingest_data.py` → then any of `similarity.py`, `radar.py`,
-`cluster.py`.
+`cluster.py`, `drift.py`, `era_trends.py`.
+
+---
+
+## v2: multi-season NBA analysis
+
+### Data
+
+Nine NBA seasons (2015-16 through 2023-24), all sourced from `nba_api` (one
+consistent source, `nbaapi_*_<YYYY>.csv`). Each season is ingested via
+`ingest_data.py` and stored as `processed/nba_<id>.csv`. The fetch scripts
+(`fetch_nba_base.py`, `fetch_nba_tracking.py`, `fetch_nba_bio.py`) are
+orchestrated by `fetch_all_seasons.py`.
+
+**Provenance fix:** the original `NBA_Stats_Per_Game_2023*.csv` files from
+Basketball-Reference were mislabeled — they contain 2023-24 data, not 2022-23
+(verified via LeBron per-game spot-check, correlation 1.0). That bbref source is
+retired. The `nba_2223` dataset ID now maps to genuine 2022-23 data from nba_api.
+
+### Two-lens design
+
+The v2 analysis answers two distinct questions using two modules that must stay
+separate — they are *complements*, not redundant:
+
+| Module | Question | Normalization |
+|---|---|---|
+| `drift.py` | Are role archetypes *re-sorting* over time? | Within-season percentile ranks → blind to uniform tides |
+| `era_trends.py` | How has the league *absolutely* changed? | None — raw league averages → sees the tides directly |
+
+### Archetype drift (`drift.py`)
+
+Pools EPL 2023-24 + all 9 NBA seasons (3,535 player-seasons) into one space,
+fits **one** `StandardScaler` + k-means (k=7), and **freezes** the scaler and
+centroids to `archetypes_frozen.pkl`. Every player-season is then assigned to the
+nearest frozen centroid — the scaler is never re-fit.
+
+Validation results:
+- ✅ **Traditional-big share falls** (−7pp combined across the two physical archetypes 2015-16 → 2023-24)
+- ✅ **Assignment is stable**: LeBron → one archetype for all 9 seasons; Curry → one archetype for all 8; Gobert stays in the physicality cluster with one adjacent-cluster flicker
+- ⚠️ The **3-point revolution is not visible here** — by design. Within-season percentile ranks erase any shift that lifts everyone equally. Use `era_trends.py` for that signal.
+
+**Stacked-area chart of NBA archetype composition drift:**
+
+![NBA archetype drift](examples/nba_archetype_drift.png)
+
+### Era trends (`era_trends.py`)
+
+Raw league averages across qualified players (minutes ≥ 500) per season. All
+rate/share signals — `3PAr = 3PA/FGA`, `FTr = FTA/FGA`, `TS%`, `eFG%`, `TOV%`,
+`AST%` — plus raw `3PA/game` alongside `3PAr` so the pace contribution is
+explicit. Chart indexes every signal to 2015-16 = 100 so mixed-scale signals
+don't flatten each other.
+
+Headline results (2015-16 → 2023-24):
+
+| Signal | 2015-16 | 2023-24 | Change |
+|---|---:|---:|---:|
+| 3PAr (3P shot share) | 0.282 | 0.402 | **+42.6%** |
+| 3PA/game (raw) | 2.38 | 3.53 | +48.6% |
+| FGA/game (raw) | 8.39 | 8.96 | +6.7% ← pace contribution |
+| FTr (FT rate) | 0.270 | 0.237 | −12.1% |
+| TOV% | 10.7 | 9.5 | −10.9% |
+| eFG% | 0.502 | 0.549 | +9.4% |
+| TS% | 0.537 | 0.578 | +7.7% |
+
+The 3-point rate story: `3PA/game` grew +48.6% but `FGA/game` only grew +6.7%,
+so almost the entire raw rise is the *rate* (the league's deliberate choice to
+shoot threes) rather than pace/volume.
+
+**All signals indexed to 2015-16 = 100:**
+
+![NBA era trends](examples/nba_era_trends.png)
+
+---
 
 ## Data provenance & licensing
 
 **Data files are NOT included in this repository** — they're large and/or not ours
 to redistribute. The code expects these inputs locally (all git-ignored):
 
-| Data | Source | Season |
+| Data | Source | Seasons |
 |---|---|---|
-| EPL player stats (`PL_Stats_2023*.csv`) | FBref | **2023–24** |
-| NBA player stats (`NBA_Stats_*.csv`) | Basketball-Reference | **2022–23** |
-| NBA tracking (`nba_tracking_2023.csv`) | NBA.com Stats | 2022–23 |
-| Soccer bio height/weight (`soccer_bio_2023.csv`) | FIFA dataset (Hugging Face) | **FIFA 23** |
-| NBA bio height/weight (`nba_bio_2023.csv`) | NBA.com | 2022–23 |
+| EPL player stats (`PL_Stats_2023*.csv`, 7 tables) | FBref | **2023–24** |
+| NBA per-game + advanced (`nbaapi_base_<YYYY>.csv`) | nba_api | **2015-16 → 2023-24** |
+| NBA tracking / hustle (`nbaapi_tracking_<YYYY>.csv`) | nba_api | **2015-16 → 2023-24** |
+| NBA bio height/weight (`nbaapi_bio_<YYYY>.csv`) | nba_api | **2015-16 → 2023-24** |
+| Soccer bio height/weight (`soccer_bio_2023.csv`) | FIFA 23 dataset (Hugging Face) | **FIFA 23** |
 
-> ⚠️ **Note the one-year season offset:** the FBref EPL stats are 2023–24, while
-> the NBA stats and the FIFA-sourced soccer bio are 2022–23 / FIFA 23. This is why
-> a handful of 2023–24 EPL arrivals (Mitoma, Mainoo, Quansah, Son, Tomiyasu, Endo)
-> have no FIFA-23 bio row and run on aerials-only physicality.
+> ⚠️ **EPL bio gap:** a handful of 2023-24 EPL arrivals (Mitoma, Mainoo, Quansah,
+> Son, Tomiyasu, Endo) have no FIFA-23 row (the 2022 game predates their moves) and
+> run on aerials-only physicality.
 
 ## Requirements
 
-Python 3 with `pandas`, `numpy`, `scipy`, `scikit-learn`, `matplotlib`.
+Python 3 with `pandas`, `numpy`, `scipy`, `scikit-learn`, `matplotlib`, `nba_api`.
 
 ```
-pip install pandas numpy scipy scikit-learn matplotlib
+pip install pandas numpy scipy scikit-learn matplotlib nba_api
 ```

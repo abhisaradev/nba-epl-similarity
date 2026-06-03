@@ -1,13 +1,20 @@
 """
-ingest_data.py — merge FBref EPL tables and BBRef NBA tables into two wide CSVs.
+ingest_data.py — registry-driven ingest: merge a dataset's raw league tables
+(FBref soccer or BBRef NBA) into one wide processed CSV.
 
-Run:  python ingest_data.py
-Out:  soccer_merged.csv, nba_merged.csv
+Filenames come from datasets.py, never hardcoded here, so a new league-season is
+just a new registry entry. build(dataset_id) dispatches by sport and writes
+processed/<id>.csv (plus backward-compat soccer.csv / nba.csv aliases).
+
+Run:  python ingest_data.py            # builds every dataset in the registry
+Out:  processed/<id>.csv  (+ soccer.csv, nba.csv, *_merged.csv aliases)
 """
 
 import os
 import unicodedata
 import pandas as pd
+
+import datasets
 
 
 def _normalize_name(name):
@@ -86,8 +93,8 @@ def _strip_meta(df):
 
 # ── EPL table loaders ─────────────────────────────────────────────────────────
 
-def _load_epl_main():
-    df = _load_fbref("PL_Stats_2023.csv")
+def _load_epl_main(path):
+    df = _load_fbref(path)
     # Pandas auto-suffixes duplicate column names (.1, .2 …).
     # Cols 26-35 are per-90 repeats of the season-total cols 11-25.
     df = df.rename(columns={
@@ -105,8 +112,8 @@ def _load_epl_main():
     return df
 
 
-def _load_shooting():
-    df = _load_fbref("PL_Stats_2023 - Shooting.csv")
+def _load_shooting(path):
+    df = _load_fbref(path)
     df = df.rename(columns={
         "Gls":   "Gls_sh",
         "PK":    "PK_sh",
@@ -117,8 +124,8 @@ def _load_shooting():
     return _strip_meta(df)
 
 
-def _load_defensive():
-    df = _load_fbref("PL_Stats_2023 - Defensive Actions.csv")
+def _load_defensive(path):
+    df = _load_fbref(path)
     # Tkl appears twice: col 8 = total tackles, col 13 (Tkl.1) = dribblers tackled.
     # Remaining renamed cols are all unique within this file.
     df = df.rename(columns={
@@ -135,9 +142,9 @@ def _load_defensive():
     return _strip_meta(df)
 
 
-def _load_gsc():
+def _load_gsc(path):
     """Goal and Shot Creation."""
-    df = _load_fbref("PL_Stats_2023 - Goal and Shot Creation.csv")
+    df = _load_fbref(path)
     df = df.rename(columns={
         "PassLive":   "SCA_PassLive",
         "PassDead":   "SCA_PassDead",
@@ -155,8 +162,8 @@ def _load_gsc():
     return _strip_meta(df)
 
 
-def _load_passing():
-    df = _load_fbref("PL_Stats_2023 - Passing.csv")
+def _load_passing(path):
+    df = _load_fbref(path)
     # Cmp, Att, Cmp% each appear 4x (Total / Short / Medium / Long).
     # pandas names them Cmp, Cmp.1, Cmp.2, Cmp.3 etc.
     df = df.rename(columns={
@@ -182,8 +189,8 @@ def _load_passing():
     return _strip_meta(df)
 
 
-def _load_possession():
-    df = _load_fbref("PL_Stats_2023 - Possession.csv")
+def _load_possession(path):
+    df = _load_fbref(path)
     df = df.rename(columns={
         "Def 3rd":  "Touch_Def3rd",
         "Mid 3rd":  "Touch_Mid3rd",
@@ -199,8 +206,8 @@ def _load_possession():
     return _strip_meta(df)
 
 
-def _load_misc():
-    df = _load_fbref("PL_Stats_2023 - Miscellaneous.csv")
+def _load_misc(path):
+    df = _load_fbref(path)
     # CrdY/CrdR/Int/TklW also appear in the main/defensive tables; suffix to avoid clash.
     df = df.rename(columns={
         "CrdY": "CrdY_misc",
@@ -224,15 +231,15 @@ def _dedup_fbref(df):
     return df.drop(columns=["_min_num"])
 
 
-def build_soccer():
-    base = _dedup_fbref(_load_epl_main())
+def build_soccer(paths):
+    base = _dedup_fbref(_load_epl_main(paths["main"]))
     extras = [
-        _load_shooting(),
-        _load_defensive(),
-        _load_gsc(),
-        _load_passing(),
-        _load_possession(),
-        _load_misc(),
+        _load_shooting(paths["shooting"]),
+        _load_defensive(paths["defensive"]),
+        _load_gsc(paths["gsc"]),
+        _load_passing(paths["passing"]),
+        _load_possession(paths["possession"]),
+        _load_misc(paths["misc"]),
     ]
     df = base
     for extra in extras:
@@ -241,9 +248,9 @@ def build_soccer():
         df = df.merge(extra, on="Player", how="outer")
     df = df.rename(columns={"Player": "player", "Min": "minutes"})
 
-    # ── merge bio (height + weight from footballdatabase.eu) ─────────────────
-    bio_path = "soccer_bio_2023.csv"
-    if os.path.exists(bio_path):
+    # ── merge bio (height + weight from the FIFA dataset) ────────────────────
+    bio_path = paths.get("bio")
+    if bio_path and os.path.exists(bio_path):
         bio = pd.read_csv(bio_path)
         # Primary key: token-sorted name  ('Son Heung-min' == 'Heung-Min Son').
         # Aliased players key off their mapped FIFA long_name so they match
@@ -341,18 +348,21 @@ def _dedup_nba(df):
     return pd.concat([singles, totals, fallback], ignore_index=True)
 
 
-def build_nba():
-    per_game = _load_nba_raw("NBA_Stats_Per_Game_2023.csv")
-    advanced = _load_nba_raw("NBA_Stats_Per_Game_2023 - Advanced.csv")
+def build_nba(paths):
+    per_game = _dedup_nba(_load_nba_raw(paths["per_game"]))
 
-    per_game = _dedup_nba(per_game)
-    advanced = _dedup_nba(advanced)
-
-    # Drop metadata + Awards from advanced before merge to avoid duplicates
-    adv_drop = [c for c in _NBA_META if c in advanced.columns] + ["Awards"]
-    advanced = advanced.drop(columns=adv_drop, errors="ignore")
-
-    df = per_game.merge(advanced, on="Player", how="outer")
+    # Two-file source (bbref: per-game + advanced as separate CSVs) -> merge them.
+    # Single-file source (nba_api: base+advanced already combined) -> skip the
+    # merge; both registry keys point at the same file. Everything downstream is
+    # identical either way.
+    if paths.get("advanced") and paths["advanced"] != paths["per_game"]:
+        advanced = _dedup_nba(_load_nba_raw(paths["advanced"]))
+        # Drop metadata + Awards from advanced before merge to avoid duplicates
+        adv_drop = [c for c in _NBA_META if c in advanced.columns] + ["Awards"]
+        advanced = advanced.drop(columns=adv_drop, errors="ignore")
+        df = per_game.merge(advanced, on="Player", how="outer")
+    else:
+        df = per_game
 
     # Numeric conversions for derived columns
     for col in ["AST", "TOV", "MP", "G", "FGA", "3PA", "FTA"]:
@@ -372,8 +382,8 @@ def build_nba():
     df = df.rename(columns={"Player": "player", "total_minutes": "minutes"})
 
     # ── merge tracking stats if available ────────────────────────────────────
-    tracking_path = "nba_tracking_2023.csv"
-    if os.path.exists(tracking_path):
+    tracking_path = paths.get("tracking")
+    if tracking_path and os.path.exists(tracking_path):
         tracking = pd.read_csv(tracking_path)
         # Both sides normalised: BBRef names are already ASCII; nba.com may have
         # accents (Dončić). _normalize_name strips diacritics on both sides.
@@ -393,8 +403,8 @@ def build_nba():
         df = df.drop(columns=["_key"])
 
     # ── merge bio (height / weight) ───────────────────────────────────────────
-    bio_path = "nba_bio_2023.csv"
-    if os.path.exists(bio_path):
+    bio_path = paths.get("bio")
+    if bio_path and os.path.exists(bio_path):
         bio = pd.read_csv(bio_path)
         df["_tskey"]  = df["player"].apply(_token_sort_key)
         bio["_tskey"] = bio["player"].apply(_token_sort_key)
@@ -452,18 +462,43 @@ def _gate(soccer):
     print("  GATE PASSED.\n")
 
 
-if __name__ == "__main__":
-    print("Building soccer table…")
-    soccer = build_soccer()
-    _gate(soccer)   # raises SystemExit (no files rewritten) if coverage too thin
-    soccer.to_csv("soccer.csv", index=False)
-    soccer.to_csv("soccer_merged.csv", index=False)   # backward-compat alias
-    n_soccer = soccer["player"].nunique()
-    print(f"  {n_soccer} players  →  soccer.csv  ({len(soccer.columns)} columns)")
+# Backward-compat output aliases so similarity.py / cluster.py keep reading the
+# same fixed filenames they always have (untouched this stage).
+# nba_2324 (nba_api, 2023-24) is THE canonical NBA table for similarity/cluster,
+# pairing with the 2023-24 EPL data. (Was the retired bbref nba_2223.)
+_ALIASES = {
+    "epl_2324": ["soccer.csv", "soccer_merged.csv"],
+    "nba_2324": ["nba.csv", "nba_merged.csv"],
+}
 
-    print("Building NBA table…")
-    nba = build_nba()
-    nba.to_csv("nba.csv", index=False)
-    nba.to_csv("nba_merged.csv", index=False)         # backward-compat alias
-    n_nba = nba["player"].nunique()
-    print(f"  {n_nba} players  →  nba.csv  ({len(nba.columns)} columns)")
+
+def build(dataset_id):
+    """Registry-driven build: resolve this dataset's table paths from datasets.py,
+    dispatch to the soccer or nba build path by sport, and write processed/<id>.csv
+    (plus any backward-compat aliases). Returns the processed dataframe."""
+    d = datasets.get(dataset_id)
+    paths = {tbl: datasets.raw_path(dataset_id, tbl) for tbl in d["tables"]}
+    print(f"Building {dataset_id}  (sport={d['sport']}, season={d.get('true_season','?')})…")
+
+    if d["sport"] == "soccer":
+        df = build_soccer(paths)
+        _gate(df)   # bio-coverage gate; doesn't mutate df, raises if too thin
+    elif d["sport"] == "nba":
+        df = build_nba(paths)
+    else:
+        raise ValueError(f"unknown sport {d['sport']!r} for dataset {dataset_id!r}")
+
+    out = datasets.processed_path(dataset_id)
+    os.makedirs(os.path.dirname(out) or ".", exist_ok=True)
+    df.to_csv(out, index=False)
+    for alias in _ALIASES.get(dataset_id, []):
+        df.to_csv(alias, index=False)
+
+    n = df["player"].nunique()
+    print(f"  {n} players  →  {out}  ({len(df.columns)} columns)\n")
+    return df
+
+
+if __name__ == "__main__":
+    for ds in datasets.DATASETS:
+        build(ds)

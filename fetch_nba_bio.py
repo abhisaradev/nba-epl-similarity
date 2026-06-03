@@ -1,20 +1,22 @@
 """
-fetch_nba_bio.py — pull 2022-23 NBA player height/weight from LeagueDashPlayerBioStats.
+fetch_nba_bio.py — pull NBA player height/weight from LeagueDashPlayerBioStats.
 
-Run once:  python fetch_nba_bio.py
-Output:    nba_bio_2023.csv  (player, height_in, weight_lbs)
+Run:    python fetch_nba_bio.py [SEASON]     # SEASON default "2022-23"
+        python fetch_nba_bio.py 2023-24
+Output: nbaapi_bio_<YYYY>.csv  (YYYY = season end year; player, height_in, weight_lbs)
 
 PLAYER_HEIGHT_INCHES is a pre-computed float column — no string parsing needed.
 PLAYER_WEIGHT is in lbs.
 """
 
+import sys
 import time
 import unicodedata
 import pandas as pd
 from nba_api.stats.endpoints import LeagueDashPlayerBioStats
 from nba_api.stats.library.http import NBAStatsHTTP
 
-SEASON  = "2022-23"
+DEFAULT_SEASON = "2022-23"
 TIMEOUT = 90
 
 NBAStatsHTTP.headers.update({
@@ -24,18 +26,23 @@ NBAStatsHTTP.headers.update({
 })
 
 
+def season_suffix(season):
+    """'2022-23' -> '2023', '2023-24' -> '2024' (the season end year)."""
+    return "20" + season.split("-")[1]
+
+
 def normalize_name(name):
     nfkd = unicodedata.normalize("NFKD", str(name))
     return "".join(c for c in nfkd if not unicodedata.combining(c))
 
 
-def main():
-    print(f"Fetching NBA bio stats for {SEASON}…", end=" ", flush=True)
+def main(season=DEFAULT_SEASON):
+    print(f"Fetching NBA bio stats for {season}…", end=" ", flush=True)
 
     for attempt in range(1, 4):
         try:
             df = LeagueDashPlayerBioStats(
-                season=SEASON,
+                season=season,
                 timeout=TIMEOUT,
             ).get_data_frames()[0]
             print(f"{len(df)} players")
@@ -58,7 +65,7 @@ def main():
     df = df[["player", "height_in", "weight_lbs"]]
     df = df.drop_duplicates(subset=["player"])
 
-    out = "nba_bio_2023.csv"
+    out = f"nbaapi_bio_{season_suffix(season)}.csv"
     df.to_csv(out, index=False)
     print(f"Wrote {len(df)} players → {out}")
     print(f"  height coverage: {df['height_in'].notna().sum()}/{len(df)}")
@@ -66,4 +73,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1] if len(sys.argv) > 1 else DEFAULT_SEASON)
