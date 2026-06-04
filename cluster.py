@@ -28,6 +28,49 @@ import pipeline
 
 FEATURE_SUFFIXES = ("__vol", "__eff")
 
+# ── Evocative archetype names ────────────────────────────────────────────────
+# Maps the auto-generated axis-label (top-2 centroid axes) to a human name.
+# Auto-labels are deterministic given a clustering run, but shift when k or
+# the data changes.  This dict covers every known output; unknown labels fall
+# back to the raw axis label so new runs don't silently break.
+#
+# Rules of thumb for the naming:
+#   Enforcer  — physical dominance, rebounding, interior
+#   Scorer    — high-volume shot-creation, finishing
+#   Playmaker — ball-handling, floor-general, drive/transition
+#   Workhorse — defensive hustle, motor, activity stats
+#   Creator   — playmaking efficiency, chance-creation, assist mentality
+#   Connector — possession security + efficient ball movement
+#   Glue Guy  — physicality + defensive effectiveness (the hybrid 7th type)
+ARCHETYPE_NAMES = {
+    # ── frozen multi-season pool (drift.py, k=7) ─────────────────────────────
+    "playmaking (eff) + playmaking (vol)":               "The Creator",
+    "defensive effectiveness (eff) + engine (vol)":      "The Workhorse",
+    "scoring threat (vol) + ball progression (eff)":     "The Scorer",
+    "physicality (eff) + defensive effectiveness (eff)": "The Glue Guy",
+    "ball progression (vol) + playmaking (vol)":         "The Playmaker",
+    "physicality (eff) + physicality (vol)":             "The Enforcer",
+    "possession security (eff) + ball progression (eff)":"The Connector",
+    # ── single-season k=7 (cluster.py, EPL 2023-24 + NBA 2023-24) ────────────
+    "playmaking (eff) + possession security (eff)":      "The Creator",
+    "defensive effectiveness (eff) + physicality (vol)": "The Enforcer",
+    "scoring threat (vol) + scoring threat (eff)":       "The Scorer",
+    "defensive effectiveness (vol) + engine (vol)":      "The Workhorse",
+    # ── single-season k=6 variants ───────────────────────────────────────────
+    "physicality (eff) + defensive effectiveness (vol)": "The Enforcer",
+    "playmaking (vol) + ball progression (vol)":         "The Playmaker",
+    "possession security (eff) + playmaking (eff)":      "The Connector",
+    "possession security (vol) + engine (vol)":          "The Workhorse",
+    "physicality (vol) + physicality (eff)":             "The Enforcer",
+    "possession security (eff) + ball progression (vol)":"The Workhorse",
+}
+
+
+def apply_name(auto_label):
+    """Return the evocative archetype name for an auto-generated axis label,
+    falling back to the raw label for any combination not yet in the dict."""
+    return ARCHETYPE_NAMES.get(auto_label, auto_label)
+
 
 def _shared_axes(a, b):
     fa = [c for c in a.columns if c.endswith(FEATURE_SUFFIXES)]
@@ -82,7 +125,10 @@ def cluster(soccer_csv="soccer.csv", nba_csv="nba.csv",
 
     k, km = _choose_k(X, ks)
     pool["cluster"] = km.labels_
-    labels = {c: _label(km.cluster_centers_[c], axes) for c in range(k)}
+    # auto_labels = raw axis description; labels = evocative name (falls back
+    # to auto_label if the combination isn't in ARCHETYPE_NAMES yet)
+    auto_labels = {c: _label(km.cluster_centers_[c], axes) for c in range(k)}
+    labels = {c: apply_name(auto_labels[c]) for c in range(k)}
     pool["archetype"] = pool["cluster"].map(labels)
 
     rows = []
@@ -93,7 +139,9 @@ def cluster(soccer_csv="soccer.csv", nba_csv="nba.csv",
         socc = sub[sub.sport == "soccer"]["player"].head(3).tolist()
         nbap = sub[sub.sport == "nba"]["player"].head(3).tolist()
         rows.append({
-            "cluster": c, "archetype": labels[c],
+            "cluster": c,
+            "archetype": labels[c],
+            "auto_label": auto_labels[c],
             "n_soccer": int((sub.sport == "soccer").sum()),
             "n_nba": int((sub.sport == "nba").sum()),
             "soccer_exemplars": ", ".join(socc),
@@ -111,7 +159,7 @@ if __name__ == "__main__":
     print("=== CROSS-SPORT ARCHETYPES ===")
     for _, r in summary.iterrows():
         mix = "MIXED" if min(r.n_soccer, r.n_nba) > 0 else "*** SPORT-SEGREGATED ***"
-        print(f"\n[{r.cluster}] {r.archetype}")
+        print(f"\n[{r.cluster}] {r.archetype}  ({r.auto_label})")
         print(f"    {r.n_soccer} soccer + {r.n_nba} nba   ({mix})")
         print(f"    soccer: {r.soccer_exemplars}")
         print(f"    nba:    {r.nba_exemplars}")

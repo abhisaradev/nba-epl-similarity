@@ -80,7 +80,8 @@ def freeze(ks=(6, 7, 8)):
     X = scaler.transform(pool[axes].fillna(_FILL).values)
 
     k, km = cluster._choose_k(X, ks)
-    labels = {c: cluster._label(km.cluster_centers_[c], axes) for c in range(k)}
+    labels = {c: cluster.apply_name(cluster._label(km.cluster_centers_[c], axes))
+              for c in range(k)}
 
     frozen = {
         "scaler": scaler,

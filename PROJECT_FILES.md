@@ -51,6 +51,9 @@ validation headline is that most clusters mix both sports, proving within-season
 normalization genuinely makes the sports comparable. The NBA-only ball-progression cluster
 is a real structural gap (not a bug) worth reporting: soccer progressors entangle with
 playmakers, but the NBA has a distinct drive/transition role without a soccer mirror.
+Contains `ARCHETYPE_NAMES` (dict mapping auto-generated axis labels → evocative names:
+The Enforcer, The Scorer, The Playmaker, The Workhorse, The Creator, The Connector, The
+Glue Guy) and `apply_name()` (the lookup helper used by both cluster.py and drift.py).
 
 ---
 
@@ -258,8 +261,8 @@ aggregation layer — a separate sub-project, not yet built).
 
 ## Roadmap (logged, not yet built)
 
-- Hand-name the archetypes (6-line dict, quick win — functional labels → evocative names)
-- CLAUDE.md for session continuity (Claude Code reads it automatically)
+- ~~Hand-name the archetypes~~ ✓ done — `ARCHETYPE_NAMES` dict in cluster.py, used by drift.py
+- ~~CLAUDE.md for session continuity~~ ✓ done — in repo root, read automatically by Claude Code
 - Team-context / usage normalization (share-of-team metrics to separate player from system)
 - StatsBomb open-data aggregator for multi-league soccer expansion (2015-16 Big-5 is free)
 - FIFA/EA FC PlayStyles as categorical archetype-labeling tags (off-ball workaround)
