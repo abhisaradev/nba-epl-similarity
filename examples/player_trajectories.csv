@@ -1,0 +1,604 @@
+player,sport,seasons_present,archetypes_seen,n_changes,most_common_archetype
+Alec Burks,nba,9,4,7,The Scorer
+Seth Curry,nba,8,4,7,The Scorer
+Bobby Portis,nba,9,3,6,The Workhorse
+Derrick Jones Jr.,nba,7,4,6,The Connector
+Jerami Grant,nba,9,6,6,The Scorer
+Kyle Anderson,nba,9,3,6,The Glue Guy
+Mason Plumlee,nba,9,3,6,The Workhorse
+Mike Muscala,nba,9,3,6,The Glue Guy
+Thaddeus Young,nba,8,3,6,The Workhorse
+Evan Fournier,nba,8,3,5,The Scorer
+Kelly Olynyk,nba,9,2,5,The Workhorse
+Kentavious Caldwell-Pope,nba,9,2,5,The Scorer
+Larry Nance Jr.,nba,9,3,5,The Glue Guy
+Luke Kennard,nba,7,4,5,The Scorer
+Malik Beasley,nba,7,3,5,The Scorer
+Markieff Morris,nba,6,3,5,The Glue Guy
+Maurice Harkless,nba,7,3,5,The Connector
+Richaun Holmes,nba,8,4,5,The Enforcer
+Taurean Prince,nba,8,4,5,The Glue Guy
+Tim Hardaway Jr.,nba,9,3,5,The Scorer
+Aaron Gordon,nba,9,3,4,The Workhorse
+Andre Iguodala,nba,6,3,4,The Creator
+Andrew Wiggins,nba,9,3,4,The Scorer
+Avery Bradley,nba,7,4,4,The Connector
+Bruce Brown,nba,6,4,4,The Glue Guy
+Buddy Hield,nba,8,3,4,The Scorer
+Cam Reddish,nba,5,3,4,The Scorer
+Cedi Osman,nba,7,3,4,The Connector
+Coby White,nba,5,3,4,The Creator
+Cody Zeller,nba,6,3,4,The Enforcer
+Danilo Gallinari,nba,8,4,4,The Scorer
+Dario Saric,nba,7,3,4,The Workhorse
+Derrick Favors,nba,7,3,4,The Enforcer
+Donte DiVincenzo,nba,5,4,4,The Scorer
+Doug McDermott,nba,9,2,4,The Scorer
+Frank Kaminsky,nba,6,3,4,The Glue Guy
+Harrison Barnes,nba,9,2,4,The Scorer
+Jeremy Lamb,nba,7,4,4,The Scorer
+Justin Holiday,nba,9,3,4,The Connector
+Justise Winslow,nba,7,2,4,The Glue Guy
+Kelly Oubre Jr.,nba,9,3,4,The Scorer
+Kent Bazemore,nba,7,5,4,The Playmaker
+Khris Middleton,nba,9,2,4,The Playmaker
+Kris Dunn,nba,6,2,4,The Creator
+Marcus Morris Sr.,nba,9,4,4,The Scorer
+Montrezl Harrell,nba,7,2,4,The Enforcer
+Myles Turner,nba,9,2,4,The Enforcer
+Pat Connaughton,nba,7,4,4,The Glue Guy
+RJ Barrett,nba,5,3,4,The Scorer
+Rudy Gay,nba,8,3,4,The Glue Guy
+Rudy Gobert,nba,9,2,4,The Enforcer
+Serge Ibaka,nba,7,2,4,The Enforcer
+Stanley Johnson,nba,6,2,4,The Glue Guy
+Steven Adams,nba,8,2,4,The Enforcer
+Tony Snell,nba,7,2,4,The Connector
+Troy Brown Jr.,nba,6,2,4,The Connector
+Victor Oladipo,nba,7,3,4,The Playmaker
+Wayne Ellington,nba,7,2,4,The Scorer
+Austin Rivers,nba,8,4,3,The Creator
+Blake Griffin,nba,8,3,3,The Workhorse
+Brandon Ingram,nba,8,3,3,The Playmaker
+Collin Sexton,nba,5,2,3,The Scorer
+Davis Bertans,nba,7,3,3,The Connector
+De'Anthony Melton,nba,6,3,3,The Creator
+Dennis Smith Jr.,nba,6,2,3,The Playmaker
+Dorian Finney-Smith,nba,7,3,3,The Glue Guy
+E'Twaun Moore,nba,5,3,3,The Scorer
+Emmanuel Mudiay,nba,5,2,3,The Creator
+Garrett Temple,nba,7,2,3,The Creator
+Gary Harris,nba,9,3,3,The Scorer
+Gordon Hayward,nba,8,3,3,The Playmaker
+Jae Crowder,nba,8,4,3,The Glue Guy
+Jakob Poeltl,nba,8,3,3,The Enforcer
+Jarrett Allen,nba,7,2,3,The Enforcer
+Jaylen Brown,nba,8,3,3,The Workhorse
+Jeff Green,nba,9,3,3,The Scorer
+Jevon Carter,nba,6,2,3,The Creator
+Joe Ingles,nba,9,4,3,The Playmaker
+Jonas Valanciunas,nba,9,2,3,The Workhorse
+Keita Bates-Diop,nba,5,3,3,The Connector
+Kenrich Williams,nba,6,3,3,The Glue Guy
+Kevin Huerter,nba,6,3,3,The Scorer
+Kyle Kuzma,nba,7,3,3,The Workhorse
+Mikal Bridges,nba,6,4,3,The Scorer
+Mike Conley,nba,8,2,3,The Playmaker
+Norman Powell,nba,9,2,3,The Scorer
+P.J. Tucker,nba,8,2,3,The Glue Guy
+Patty Mills,nba,8,3,3,The Creator
+Reggie Bullock Jr.,nba,6,3,3,The Scorer
+Reggie Jackson,nba,9,2,3,The Playmaker
+Ricky Rubio,nba,8,2,3,The Playmaker
+Rui Hachimura,nba,5,2,3,The Glue Guy
+Shake Milton,nba,5,4,3,The Creator
+Terrence Ross,nba,8,2,3,The Scorer
+Terry Rozier,nba,8,2,3,The Playmaker
+Tomas Satoransky,nba,6,3,3,The Creator
+Trevor Ariza,nba,6,3,3,The Playmaker
+Wesley Matthews,nba,8,3,3,The Connector
+Will Barton,nba,8,2,3,The Playmaker
+Willie Cauley-Stein,nba,6,3,3,The Enforcer
+Andre Drummond,nba,9,2,2,The Enforcer
+Anthony Tolliver,nba,5,3,2,The Scorer
+Bogdan Bogdanovic,nba,7,2,2,The Playmaker
+Brook Lopez,nba,8,2,2,The Workhorse
+Bryn Forbes,nba,5,2,2,The Connector
+Cameron Johnson,nba,5,2,2,The Scorer
+Carmelo Anthony,nba,6,3,2,The Scorer
+Christian Wood,nba,5,2,2,The Workhorse
+Clint Capela,nba,9,2,2,The Enforcer
+D.J. Augustin,nba,7,2,2,The Creator
+Daniel Theis,nba,6,2,2,The Enforcer
+Danuel House Jr.,nba,6,3,2,The Connector
+De'Andre Hunter,nba,5,2,2,The Scorer
+DeMarcus Cousins,nba,6,3,2,The Workhorse
+Deandre Ayton,nba,6,2,2,The Workhorse
+Delon Wright,nba,7,2,2,The Creator
+Dennis Schroder,nba,9,2,2,The Playmaker
+Devonte' Graham,nba,5,2,2,The Creator
+Dillon Brooks,nba,6,2,2,The Scorer
+Duncan Robinson,nba,5,2,2,The Scorer
+Georges Niang,nba,6,3,2,The Connector
+Gorgui Dieng,nba,6,2,2,The Enforcer
+Grant Williams,nba,5,3,2,The Connector
+Grayson Allen,nba,5,3,2,The Scorer
+Hamidou Diallo,nba,5,3,2,The Connector
+JaMychal Green,nba,8,2,2,The Enforcer
+James Johnson,nba,7,3,2,The Glue Guy
+Jayson Tatum,nba,7,2,2,The Workhorse
+John Collins,nba,7,2,2,The Workhorse
+Jordan Clarkson,nba,9,2,2,The Scorer
+Jordan Poole,nba,5,3,2,The Playmaker
+Josh Hart,nba,7,2,2,The Glue Guy
+Josh Richardson,nba,9,2,2,The Creator
+Juancho Hernangomez,nba,5,3,2,The Connector
+Kevon Looney,nba,6,2,2,The Glue Guy
+Klay Thompson,nba,7,2,2,The Scorer
+LaMarcus Aldridge,nba,7,3,2,The Workhorse
+Landry Shamet,nba,6,3,2,The Scorer
+Langston Galloway,nba,5,3,2,The Creator
+Lauri Markkanen,nba,7,2,2,The Workhorse
+Lonnie Walker IV,nba,5,2,2,The Scorer
+Lou Williams,nba,7,3,2,The Playmaker
+Malik Monk,nba,7,3,2,The Scorer
+Mario Hezonja,nba,5,2,2,The Connector
+Mike Scott,nba,5,2,2,The Connector
+Nemanja Bjelica,nba,7,2,2,The Glue Guy
+Nickeil Alexander-Walker,nba,5,2,2,The Creator
+Otto Porter Jr.,nba,6,3,2,The Workhorse
+Pascal Siakam,nba,8,3,2,The Workhorse
+Paul Millsap,nba,6,3,2,The Workhorse
+Robert Covington,nba,8,2,2,The Glue Guy
+Robin Lopez,nba,7,2,2,The Enforcer
+Rodney Hood,nba,7,3,2,The Scorer
+Rondae Hollis-Jefferson,nba,5,2,2,The Glue Guy
+Shabazz Napier,nba,5,2,2,The Creator
+Spencer Dinwiddie,nba,7,2,2,The Playmaker
+Sterling Brown,nba,5,2,2,The Connector
+Trey Lyles,nba,8,2,2,The Glue Guy
+Tristan Thompson,nba,8,2,2,The Enforcer
+Tyler Johnson,nba,6,3,2,The Playmaker
+Vince Carter,nba,5,2,2,The Connector
+Wendell Carter Jr.,nba,6,2,2,The Enforcer
+Alex Caruso,nba,7,2,1,The Creator
+Allen Crabbe,nba,5,2,1,The Scorer
+Anfernee Simons,nba,5,2,1,The Playmaker
+Bam Adebayo,nba,7,2,1,The Workhorse
+Caris LeVert,nba,8,2,1,The Playmaker
+Chris Paul,nba,9,2,1,The Playmaker
+Danny Green,nba,7,2,1,The Glue Guy
+Darius Garland,nba,5,2,1,The Playmaker
+De'Aaron Fox,nba,7,2,1,The Playmaker
+Dejounte Murray,nba,6,2,1,The Playmaker
+Devin Booker,nba,9,2,1,The Playmaker
+Domantas Sabonis,nba,8,2,1,The Workhorse
+Dwight Powell,nba,9,2,1,The Enforcer
+Elfrid Payton,nba,7,2,1,The Playmaker
+Frank Ntilikina,nba,5,2,1,The Creator
+Fred VanVleet,nba,7,2,1,The Playmaker
+Gary Trent Jr.,nba,5,2,1,The Scorer
+George Hill,nba,8,2,1,The Creator
+Goran Dragic,nba,7,2,1,The Playmaker
+Ish Smith,nba,8,2,1,The Creator
+JJ Redick,nba,6,2,1,The Scorer
+Jabari Parker,nba,5,2,1,The Workhorse
+Jalen Brunson,nba,6,2,1,The Playmaker
+Jamal Murray,nba,7,2,1,The Playmaker
+James Ennis III,nba,5,2,1,The Connector
+James Harden,nba,9,2,1,The Workhorse
+Jaren Jackson Jr.,nba,5,2,1,The Workhorse
+Jeff Teague,nba,6,2,1,The Playmaker
+Joe Harris,nba,6,2,1,The Scorer
+John Wall,nba,6,2,1,The Playmaker
+Jusuf Nurkic,nba,8,2,1,The Workhorse
+Kemba Walker,nba,7,2,1,The Playmaker
+Kevin Love,nba,9,2,1,The Workhorse
+Khem Birch,nba,5,2,1,The Enforcer
+Kyle Korver,nba,5,2,1,The Connector
+Kyle Lowry,nba,9,2,1,The Playmaker
+Luguentz Dort,nba,5,2,1,The Scorer
+Luka Doncic,nba,6,2,1,The Workhorse
+Marc Gasol,nba,6,2,1,The Workhorse
+Marco Belinelli,nba,5,2,1,The Scorer
+Marvin Williams,nba,5,2,1,The Glue Guy
+Michael Carter-Williams,nba,5,2,1,The Creator
+Miles Bridges,nba,5,2,1,The Workhorse
+Nerlens Noel,nba,6,2,1,The Enforcer
+Nicolas Batum,nba,9,2,1,The Glue Guy
+OG Anunoby,nba,7,2,1,The Workhorse
+P.J. Washington,nba,5,2,1,The Workhorse
+Patrick Beverley,nba,8,2,1,The Creator
+Patrick Patterson,nba,6,2,1,The Connector
+Rajon Rondo,nba,7,2,1,The Creator
+Rodney McGruder,nba,5,2,1,The Connector
+Russell Westbrook,nba,9,2,1,The Playmaker
+Solomon Hill,nba,5,2,1,The Connector
+T.J. Warren,nba,6,2,1,The Scorer
+Torrey Craig,nba,7,2,1,The Connector
+Trey Burke,nba,6,2,1,The Creator
+Tyler Herro,nba,5,2,1,The Playmaker
+Zach Collins,nba,5,2,1,The Enforcer
+Aaron Holiday,nba,6,1,0,The Creator
+Al Horford,nba,9,1,0,The Workhorse
+Alex Len,nba,7,1,0,The Enforcer
+Anthony Davis,nba,9,1,0,The Workhorse
+Aron Baynes,nba,6,1,0,The Enforcer
+Ben McLemore,nba,6,1,0,The Connector
+Ben Simmons,nba,5,1,0,The Workhorse
+Bismack Biyombo,nba,9,1,0,The Enforcer
+Bojan Bogdanovic,nba,9,1,0,The Scorer
+Bradley Beal,nba,9,1,0,The Playmaker
+CJ McCollum,nba,9,1,0,The Playmaker
+Cameron Payne,nba,7,1,0,The Creator
+Chris Boucher,nba,5,1,0,The Enforcer
+Cory Joseph,nba,8,1,0,The Creator
+D'Angelo Russell,nba,9,1,0,The Playmaker
+Damian Lillard,nba,9,1,0,The Playmaker
+Daniel Gafford,nba,5,1,0,The Enforcer
+DeAndre Jordan,nba,8,1,0,The Enforcer
+DeMar DeRozan,nba,9,1,0,The Playmaker
+Derrick Rose,nba,6,1,0,The Playmaker
+Derrick White,nba,6,1,0,The Playmaker
+Dewayne Dedmon,nba,6,1,0,The Enforcer
+Donovan Mitchell,nba,7,1,0,The Playmaker
+Draymond Green,nba,9,1,0,The Workhorse
+Dwight Howard,nba,6,1,0,The Enforcer
+Enes Freedom,nba,6,1,0,The Enforcer
+Eric Bledsoe,nba,7,1,0,The Playmaker
+Eric Gordon,nba,9,1,0,The Scorer
+Ersan Ilyasova,nba,5,1,0,The Glue Guy
+Giannis Antetokounmpo,nba,9,1,0,The Workhorse
+Hassan Whiteside,nba,7,1,0,The Enforcer
+Ivica Zubac,nba,7,1,0,The Enforcer
+JaVale McGee,nba,6,1,0,The Enforcer
+Jaxson Hayes,nba,5,1,0,The Enforcer
+Jimmy Butler III,nba,9,1,0,The Playmaker
+Joel Embiid,nba,8,1,0,The Workhorse
+Jordan McLaughlin,nba,5,1,0,The Creator
+Josh Okogie,nba,6,1,0,The Connector
+Jrue Holiday,nba,9,1,0,The Playmaker
+Julius Randle,nba,9,1,0,The Workhorse
+Karl-Anthony Towns,nba,9,1,0,The Workhorse
+Kawhi Leonard,nba,7,1,0,The Workhorse
+Kevin Durant,nba,8,1,0,The Workhorse
+Kristaps Porzingis,nba,8,1,0,The Workhorse
+Kyrie Irving,nba,9,1,0,The Playmaker
+LeBron James,nba,9,1,0,The Workhorse
+Lonzo Ball,nba,5,1,0,The Playmaker
+Malcolm Brogdon,nba,8,1,0,The Playmaker
+Marcus Smart,nba,9,1,0,The Playmaker
+Marvin Bagley III,nba,5,1,0,The Enforcer
+Matisse Thybulle,nba,5,1,0,The Connector
+Matthew Dellavedova,nba,5,1,0,The Creator
+Maxi Kleber,nba,7,1,0,The Glue Guy
+Mitchell Robinson,nba,6,1,0,The Enforcer
+Mo Bamba,nba,6,1,0,The Enforcer
+Monte Morris,nba,5,1,0,The Creator
+Moritz Wagner,nba,5,1,0,The Enforcer
+Nikola Jokic,nba,9,1,0,The Workhorse
+Nikola Vucevic,nba,9,1,0,The Workhorse
+Paul George,nba,9,1,0,The Workhorse
+Raul Neto,nba,6,1,0,The Creator
+Royce O'Neale,nba,7,1,0,The Glue Guy
+Shai Gilgeous-Alexander,nba,6,1,0,The Playmaker
+Stephen Curry,nba,8,1,0,The Playmaker
+T.J. McConnell,nba,9,1,0,The Creator
+Taj Gibson,nba,7,1,0,The Enforcer
+Timothe Luwawu-Cabarrot,nba,6,1,0,The Connector
+Tobias Harris,nba,9,1,0,The Workhorse
+Trae Young,nba,6,1,0,The Playmaker
+Tyus Jones,nba,9,1,0,The Creator
+Zach LaVine,nba,9,1,0,The Playmaker
+Aaron Wan-Bissaka,soccer,1,1,0,The Glue Guy
+Abdoulaye Doucouré,soccer,1,1,0,The Scorer
+Adam Smith,soccer,1,1,0,The Glue Guy
+Adam Webster,soccer,1,1,0,The Glue Guy
+Adam Wharton,soccer,1,1,0,The Creator
+Albert Sambi Lokonga,soccer,1,1,0,The Glue Guy
+Alejandro Garnacho,soccer,1,1,0,The Playmaker
+Alex Iwobi,soccer,1,1,0,The Scorer
+Alex Scott,soccer,1,1,0,The Connector
+Alexander Isak,soccer,1,1,0,The Scorer
+Alexis Mac Allister,soccer,1,1,0,The Playmaker
+Alfie Doughty,soccer,1,1,0,The Playmaker
+Amadou Onana,soccer,1,1,0,The Glue Guy
+Amari'i Bell,soccer,1,1,0,The Glue Guy
+Ameen Al-Dakhil,soccer,1,1,0,The Connector
+Andre Brooks,soccer,1,1,0,The Connector
+Andreas Pereira,soccer,1,1,0,The Playmaker
+Andrew Robertson,soccer,1,1,0,The Playmaker
+Andros Townsend,soccer,1,1,0,The Scorer
+Anel Ahmedhodžić,soccer,1,1,0,The Enforcer
+Anthony Elanga,soccer,1,1,0,The Scorer
+Anthony Gordon,soccer,1,1,0,The Playmaker
+Antoine Semenyo,soccer,1,1,0,The Scorer
+Antonee Robinson,soccer,1,1,0,The Workhorse
+Antony,soccer,1,1,0,The Scorer
+Ashley Young,soccer,1,1,0,The Creator
+Auston Trusty,soccer,1,1,0,The Glue Guy
+Axel Disasi,soccer,1,1,0,The Workhorse
+Ben Brereton,soccer,1,1,0,The Scorer
+Ben Davies,soccer,1,1,0,The Glue Guy
+Ben Godfrey,soccer,1,1,0,The Glue Guy
+Ben Mee,soccer,1,1,0,The Glue Guy
+Ben Osborn,soccer,1,1,0,The Connector
+Ben White,soccer,1,1,0,The Workhorse
+Benoît Badiashile,soccer,1,1,0,The Glue Guy
+Bernardo Silva,soccer,1,1,0,The Playmaker
+Beto,soccer,1,1,0,The Scorer
+Billy Gilmour,soccer,1,1,0,The Creator
+Bobby De Cordova-Reid,soccer,1,1,0,The Scorer
+Boubacar Kamara,soccer,1,1,0,The Glue Guy
+Brennan Johnson,soccer,1,1,0,The Scorer
+Bruno Fernandes,soccer,1,1,0,The Playmaker
+Bruno Guimarães,soccer,1,1,0,The Playmaker
+Bryan Mbeumo,soccer,1,1,0,The Playmaker
+Bukayo Saka,soccer,1,1,0,The Playmaker
+Callum Hudson-Odoi,soccer,1,1,0,The Scorer
+Callum Wilson,soccer,1,1,0,The Scorer
+Calvin Bassey,soccer,1,1,0,The Glue Guy
+Cameron Archer,soccer,1,1,0,The Scorer
+Carlos Baleba,soccer,1,1,0,The Glue Guy
+Carlton Morris,soccer,1,1,0,The Scorer
+Casemiro,soccer,1,1,0,The Workhorse
+Charlie Taylor,soccer,1,1,0,The Glue Guy
+Cheick Doucouré,soccer,1,1,0,The Connector
+Chiedozie Ogbene,soccer,1,1,0,The Scorer
+Chris Richards,soccer,1,1,0,The Glue Guy
+Chris Wood,soccer,1,1,0,The Scorer
+Christian Eriksen,soccer,1,1,0,The Scorer
+Christian Nørgaard,soccer,1,1,0,The Workhorse
+Clément Lenglet,soccer,1,1,0,The Glue Guy
+Cody Gakpo,soccer,1,1,0,The Scorer
+Cole Palmer,soccer,1,1,0,The Playmaker
+Conor Gallagher,soccer,1,1,0,The Workhorse
+Craig Dawson,soccer,1,1,0,The Glue Guy
+Cristian Romero,soccer,1,1,0,The Workhorse
+Curtis Jones,soccer,1,1,0,The Scorer
+Dan Burn,soccer,1,1,0,The Workhorse
+Dango Ouattara,soccer,1,1,0,The Scorer
+Daniel Muñoz,soccer,1,1,0,The Glue Guy
+Danilo,soccer,1,1,0,The Glue Guy
+Danny Welbeck,soccer,1,1,0,The Scorer
+Dara O'Shea,soccer,1,1,0,The Glue Guy
+Darwin Núñez,soccer,1,1,0,The Scorer
+Declan Rice,soccer,1,1,0,The Workhorse
+Dejan Kulusevski,soccer,1,1,0,The Playmaker
+Destiny Udogie,soccer,1,1,0,The Workhorse
+Diego Carlos,soccer,1,1,0,The Glue Guy
+Diogo Dalot,soccer,1,1,0,The Workhorse
+Diogo Jota,soccer,1,1,0,The Scorer
+Dominic Calvert-Lewin,soccer,1,1,0,The Scorer
+Dominic Solanke,soccer,1,1,0,The Scorer
+Dominik Szoboszlai,soccer,1,1,0,The Playmaker
+Douglas Luiz,soccer,1,1,0,The Playmaker
+Dwight McNeil,soccer,1,1,0,The Playmaker
+Eberechi Eze,soccer,1,1,0,The Playmaker
+Eddie Nketiah,soccer,1,1,0,The Scorer
+Edson Álvarez,soccer,1,1,0,The Glue Guy
+Elijah Adebayo,soccer,1,1,0,The Scorer
+Elliot Anderson,soccer,1,1,0,The Glue Guy
+Emerson,soccer,1,1,0,The Glue Guy
+Emerson Palmieri,soccer,1,1,0,The Workhorse
+Emil Krafth,soccer,1,1,0,The Connector
+Enzo Fernández,soccer,1,1,0,The Playmaker
+Erling Haaland,soccer,1,1,0,The Scorer
+Ethan Pinnock,soccer,1,1,0,The Glue Guy
+Evan Ferguson,soccer,1,1,0,The Scorer
+Ezri Konsa,soccer,1,1,0,The Workhorse
+Fabian Schär,soccer,1,1,0,The Workhorse
+Facundo Buonanotte,soccer,1,1,0,The Scorer
+Frank Onyeka,soccer,1,1,0,The Scorer
+Gabriel Jesus,soccer,1,1,0,The Scorer
+Gabriel Magalhães,soccer,1,1,0,The Glue Guy
+Gabriel Martinelli,soccer,1,1,0,The Playmaker
+Gabriel Osho,soccer,1,1,0,The Glue Guy
+George Baldock,soccer,1,1,0,The Connector
+Gustavo Hamer,soccer,1,1,0,The Playmaker
+Harrison Reed,soccer,1,1,0,The Connector
+Harry Maguire,soccer,1,1,0,The Glue Guy
+Harry Toffolo,soccer,1,1,0,The Glue Guy
+Harry Wilson,soccer,1,1,0,The Scorer
+Harvey Elliott,soccer,1,1,0,The Playmaker
+Hwang Hee-chan,soccer,1,1,0,The Scorer
+Ibrahim Sangaré,soccer,1,1,0,The Connector
+Ibrahima Konaté,soccer,1,1,0,The Glue Guy
+Idrissa Gana Gueye,soccer,1,1,0,The Glue Guy
+Igor,soccer,1,1,0,The Glue Guy
+Illia Zabarnyi,soccer,1,1,0,The Glue Guy
+Issa Diop,soccer,1,1,0,The Glue Guy
+Issa Kaboré,soccer,1,1,0,The Glue Guy
+Ivan Toney,soccer,1,1,0,The Scorer
+Jack Grealish,soccer,1,1,0,The Scorer
+Jack Harrison,soccer,1,1,0,The Scorer
+Jack Robinson,soccer,1,1,0,The Glue Guy
+Jacob Brown,soccer,1,1,0,The Connector
+Jacob Bruun Larsen,soccer,1,1,0,The Scorer
+Jacob Murphy,soccer,1,1,0,The Scorer
+Jakub Kiwior,soccer,1,1,0,The Connector
+Jamaal Lascelles,soccer,1,1,0,The Glue Guy
+James Garner,soccer,1,1,0,The Workhorse
+James Maddison,soccer,1,1,0,The Playmaker
+James Mcatee,soccer,1,1,0,The Scorer
+James Tarkowski,soccer,1,1,0,The Workhorse
+James Ward-Prowse,soccer,1,1,0,The Playmaker
+Jan Paul van Hecke,soccer,1,1,0,The Glue Guy
+Jarell Quansah,soccer,1,1,0,The Enforcer
+Jarrad Branthwaite,soccer,1,1,0,The Enforcer
+Jarrod Bowen,soccer,1,1,0,The Scorer
+Jayden Bogle,soccer,1,1,0,The Glue Guy
+Jean-Philippe Mateta,soccer,1,1,0,The Scorer
+Jean-Ricner Bellegarde,soccer,1,1,0,The Scorer
+Jefferson Lerma,soccer,1,1,0,The Workhorse
+Jeffrey Schlupp,soccer,1,1,0,The Scorer
+Jeremy Doku,soccer,1,1,0,The Playmaker
+Joachim Andersen,soccer,1,1,0,The Workhorse
+Joe Gomez,soccer,1,1,0,The Glue Guy
+Joel Ward,soccer,1,1,0,The Glue Guy
+Joelinton,soccer,1,1,0,The Scorer
+John McGinn,soccer,1,1,0,The Playmaker
+John Stones,soccer,1,1,0,The Glue Guy
+Jonny Evans,soccer,1,1,0,The Glue Guy
+Jordan Ayew,soccer,1,1,0,The Playmaker
+Jordan Beyer,soccer,1,1,0,The Glue Guy
+Jordan Clark,soccer,1,1,0,The Connector
+Jorginho,soccer,1,1,0,The Creator
+Josh Brownhill,soccer,1,1,0,The Glue Guy
+Josh Cullen,soccer,1,1,0,The Glue Guy
+João Gomes,soccer,1,1,0,The Glue Guy
+João Palhinha,soccer,1,1,0,The Workhorse
+João Pedro,soccer,1,1,0,The Playmaker
+Joël Veltman,soccer,1,1,0,The Glue Guy
+Joško Gvardiol,soccer,1,1,0,The Workhorse
+Julián Álvarez,soccer,1,1,0,The Playmaker
+Justin Kluivert,soccer,1,1,0,The Scorer
+Jóhann Berg Guðmundsson,soccer,1,1,0,The Creator
+Kai Havertz,soccer,1,1,0,The Workhorse
+Kaoru Mitoma,soccer,1,1,0,The Scorer
+Keane Lewis-Potter,soccer,1,1,0,The Scorer
+Kevin De Bruyne,soccer,1,1,0,The Playmaker
+Kieran Trippier,soccer,1,1,0,The Workhorse
+Kobbie Mainoo,soccer,1,1,0,The Scorer
+Konstantinos Mavropanos,soccer,1,1,0,The Glue Guy
+Kristoffer Ajer,soccer,1,1,0,The Enforcer
+Kurt Zouma,soccer,1,1,0,The Enforcer
+Kyle Walker,soccer,1,1,0,The Workhorse
+Leandro Trossard,soccer,1,1,0,The Scorer
+Leon Bailey,soccer,1,1,0,The Playmaker
+Levi Colwill,soccer,1,1,0,The Glue Guy
+Lewis Cook,soccer,1,1,0,The Glue Guy
+Lewis Dunk,soccer,1,1,0,The Workhorse
+Lewis Miley,soccer,1,1,0,The Scorer
+Lloyd Kelly,soccer,1,1,0,The Glue Guy
+Lorenz Assignon,soccer,1,1,0,The Connector
+Luca Koleosho,soccer,1,1,0,The Scorer
+Lucas Digne,soccer,1,1,0,The Glue Guy
+Lucas Paquetá,soccer,1,1,0,The Workhorse
+Luis Díaz,soccer,1,1,0,The Playmaker
+Luke Shaw,soccer,1,1,0,The Connector
+Luke Thomas,soccer,1,1,0,The Connector
+Lyle Foster,soccer,1,1,0,The Scorer
+Mads Roerslev,soccer,1,1,0,The Scorer
+Malo Gusto,soccer,1,1,0,The Playmaker
+Manuel Akanji,soccer,1,1,0,The Workhorse
+Marc Cucurella,soccer,1,1,0,The Glue Guy
+Marc Guéhi,soccer,1,1,0,The Glue Guy
+Marcos Senesi,soccer,1,1,0,The Workhorse
+Marcus Rashford,soccer,1,1,0,The Scorer
+Marcus Tavernier,soccer,1,1,0,The Playmaker
+Mario Lemina,soccer,1,1,0,The Workhorse
+Martin Ødegaard,soccer,1,1,0,The Playmaker
+Marvelous Nakamba,soccer,1,1,0,The Connector
+Mateo Kovačić,soccer,1,1,0,The Scorer
+Matheus Cunha,soccer,1,1,0,The Playmaker
+Mathias Jensen,soccer,1,1,0,The Creator
+Mathias Jørgensen,soccer,1,1,0,The Enforcer
+Matt Doherty,soccer,1,1,0,The Glue Guy
+Matty Cash,soccer,1,1,0,The Playmaker
+Max Aarons,soccer,1,1,0,The Connector
+Max Kilman,soccer,1,1,0,The Workhorse
+Maxime Estève,soccer,1,1,0,The Glue Guy
+Michael Olise,soccer,1,1,0,The Scorer
+Michail Antonio,soccer,1,1,0,The Scorer
+Micky van de Ven,soccer,1,1,0,The Glue Guy
+Miguel Almirón,soccer,1,1,0,The Scorer
+Milos Kerkez,soccer,1,1,0,The Glue Guy
+Mohamed Salah,soccer,1,1,0,The Playmaker
+Mohammed Kudus,soccer,1,1,0,The Playmaker
+Moisés Caicedo,soccer,1,1,0,The Glue Guy
+Morgan Gibbs-White,soccer,1,1,0,The Playmaker
+Moussa Diaby,soccer,1,1,0,The Scorer
+Moussa Niakhate,soccer,1,1,0,The Enforcer
+Murillo,soccer,1,1,0,The Glue Guy
+Mykhailo Mudryk,soccer,1,1,0,The Scorer
+Nathan Aké,soccer,1,1,0,The Glue Guy
+Nathan Collins,soccer,1,1,0,The Glue Guy
+Nathan Patterson,soccer,1,1,0,The Connector
+Nathaniel Clyne,soccer,1,1,0,The Connector
+Nayef Aguerd,soccer,1,1,0,The Glue Guy
+Neal Maupay,soccer,1,1,0,The Scorer
+Neco Williams,soccer,1,1,0,The Glue Guy
+Nicolas Jackson,soccer,1,1,0,The Scorer
+Nicolás Domínguez,soccer,1,1,0,The Glue Guy
+Noni Madueke,soccer,1,1,0,The Scorer
+Nélson Semedo,soccer,1,1,0,The Playmaker
+Odsonne Édouard,soccer,1,1,0,The Scorer
+Ola Aina,soccer,1,1,0,The Glue Guy
+Oleksandr Zinchenko,soccer,1,1,0,The Playmaker
+Oliver Arblaster,soccer,1,1,0,The Connector
+Oliver McBurnie,soccer,1,1,0,The Scorer
+Oliver Norwood,soccer,1,1,0,The Glue Guy
+Ollie Watkins,soccer,1,1,0,The Scorer
+Orel Mangala,soccer,1,1,0,The Glue Guy
+Pablo Sarabia,soccer,1,1,0,The Playmaker
+Pape Matar Sarr,soccer,1,1,0,The Playmaker
+Pascal Groß,soccer,1,1,0,The Playmaker
+Pau Torres,soccer,1,1,0,The Glue Guy
+Pedro Neto,soccer,1,1,0,The Scorer
+Pedro Porro,soccer,1,1,0,The Playmaker
+Pelly Ruddock Mpanzu,soccer,1,1,0,The Connector
+Pervis Estupiñán,soccer,1,1,0,The Scorer
+Phil Foden,soccer,1,1,0,The Playmaker
+Philip Billing,soccer,1,1,0,The Glue Guy
+Pierre Højbjerg,soccer,1,1,0,The Scorer
+Raheem Sterling,soccer,1,1,0,The Scorer
+Raphaël Varane,soccer,1,1,0,The Glue Guy
+Rasmus Højlund,soccer,1,1,0,The Scorer
+Rayan Aït-Nouri,soccer,1,1,0,The Playmaker
+Raúl Jiménez,soccer,1,1,0,The Scorer
+Reece Burke,soccer,1,1,0,The Glue Guy
+Richarlison,soccer,1,1,0,The Scorer
+Rodri,soccer,1,1,0,The Workhorse
+Rodrigo Bentancur,soccer,1,1,0,The Scorer
+Rodrigo Muniz,soccer,1,1,0,The Scorer
+Ross Barkley,soccer,1,1,0,The Workhorse
+Ryan Christie,soccer,1,1,0,The Playmaker
+Ryan Gravenberch,soccer,1,1,0,The Scorer
+Ryan Yates,soccer,1,1,0,The Glue Guy
+Rúben Dias,soccer,1,1,0,The Glue Guy
+Sander Berge,soccer,1,1,0,The Workhorse
+Saša Lukić,soccer,1,1,0,The Connector
+Scott McTominay,soccer,1,1,0,The Glue Guy
+Sean Longstaff,soccer,1,1,0,The Playmaker
+Sergio Reguilón,soccer,1,1,0,The Connector
+Simon Adingra,soccer,1,1,0,The Playmaker
+Sofyan Amrabat,soccer,1,1,0,The Connector
+Son Heung-min,soccer,1,1,0,The Playmaker
+Sven Botman,soccer,1,1,0,The Glue Guy
+Tahith Chong,soccer,1,1,0,The Scorer
+Taiwo Awoniyi,soccer,1,1,0,The Scorer
+Takehiro Tomiyasu,soccer,1,1,0,The Glue Guy
+Tariq Lamptey,soccer,1,1,0,The Connector
+Teden Mengi,soccer,1,1,0,The Glue Guy
+Thiago Silva,soccer,1,1,0,The Glue Guy
+Tim Ream,soccer,1,1,0,The Enforcer
+Timothy Castagne,soccer,1,1,0,The Workhorse
+Tom Cairney,soccer,1,1,0,The Workhorse
+Tom Lockyer,soccer,1,1,0,The Enforcer
+Tommy Doyle,soccer,1,1,0,The Creator
+Tomáš Souček,soccer,1,1,0,The Workhorse
+Tosin Adarabioyo,soccer,1,1,0,The Glue Guy
+Toti Gomes,soccer,1,1,0,The Glue Guy
+Trent Alexander-Arnold,soccer,1,1,0,The Playmaker
+Trevoh Chalobah,soccer,1,1,0,The Enforcer
+Tyrick Mitchell,soccer,1,1,0,The Workhorse
+Valentino Livramento,soccer,1,1,0,The Glue Guy
+Victor Lindelöf,soccer,1,1,0,The Scorer
+Vinicius Souza,soccer,1,1,0,The Glue Guy
+Virgil van Dijk,soccer,1,1,0,The Workhorse
+Vitaliy Mykolenko,soccer,1,1,0,The Glue Guy
+Vitaly Janelt,soccer,1,1,0,The Workhorse
+Vitinho,soccer,1,1,0,The Glue Guy
+Vladimír Coufal,soccer,1,1,0,The Glue Guy
+Wataru Endo,soccer,1,1,0,The Glue Guy
+Will Hughes,soccer,1,1,0,The Glue Guy
+William Saliba,soccer,1,1,0,The Workhorse
+Willian,soccer,1,1,0,The Playmaker
+Willy Boly,soccer,1,1,0,The Enforcer
+Wilson Odobert,soccer,1,1,0,The Scorer
+Yoane Wissa,soccer,1,1,0,The Scorer
+Youri Tielemans,soccer,1,1,0,The Scorer
+Yves Bissouma,soccer,1,1,0,The Glue Guy
+Zeki Amdouni,soccer,1,1,0,The Scorer
+Álex Moreno,soccer,1,1,0,The Scorer

@@ -178,6 +178,48 @@ shoot threes) rather than pace/volume.
 
 ![NBA era trends](examples/nba_era_trends.png)
 
+### Player trajectory analysis (`trajectories.py`)
+
+`trajectories.py` loads the frozen archetype assignments directly (no re-clustering)
+and surfaces how individual players moved through the 7 archetypes across their
+careers. For every player with 5+ qualifying seasons it computes archetype transitions,
+distinct archetypes visited, A→B→A return patterns, and most common archetype, writing
+a full summary to `examples/player_trajectories.csv` (603 rows).
+
+**The stable baseline:** LeBron James, Stephen Curry, and Giannis Antetokounmpo each
+hold exactly one archetype across all seasons they qualify for — LeBron and Giannis as
+The Workhorse (9/9), Curry as The Playmaker (8/8). The model sees their defining
+identity immediately and never wavers.
+
+**The top drifters** (ranked by season-to-season transitions) are genuine role
+chameleons whose archetype changes map to real career events, not noise:
+- **Alec Burks** — 9 seasons, 4 archetypes, 7 transitions. Career journeyman across
+  Utah, Cleveland, Sacramento, Golden State, New York, Detroit and more; his role
+  flipped repeatedly from off-ball scorer to primary ball-handler as teams deployed
+  him differently.
+- **Seth Curry** — 8 seasons, 4 archetypes, 7 transitions. Pure shooter (The Scorer)
+  periodically asked to act as a secondary playmaker in Dallas and Philadelphia; his
+  oscillation between Scorer, Playmaker, and Connector tracks real team-specific role
+  changes across multiple trades.
+- **Bobby Portis** — 9 seasons, 3 archetypes, 6 transitions. Physical reserve big in
+  Chicago who cycled between Glue Guy and Enforcer before finding a defined identity
+  in Milwaukee as a high-usage sixth-man; late-career consolidation to Workhorse/
+  Enforcer mirrors his emergence as a real offensive weapon.
+
+**Cross-sport spot-check** (EPL players assigned via the same frozen archetypes):
+- **Erling Haaland → The Scorer** — textbook; highest shot volume and best finishing
+  rate in the league. His centroid distance (3.96) is the highest of any named player,
+  honestly reflecting that he's an extreme outlier even within his own archetype.
+- **Rodri → The Workhorse** — surprising at first glance given his playmaking radar,
+  but the cross-sport pool pulls him toward The Workhorse on his defensive engine and
+  ball-recovery volume. An honest consequence of cross-sport coarseness: the 7-archetype
+  space compresses Rodri's full profile into the dimension he shares most robustly with
+  NBA counterparts.
+
+**Trajectory chart (top-3 drifters vs. LeBron as stable baseline):**
+
+![Trajectory highlight](examples/trajectory_highlight.png)
+
 ---
 
 ## Data provenance & licensing

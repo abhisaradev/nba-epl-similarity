@@ -72,6 +72,18 @@ season they appear in). Uses fillna(0.5) NOT fillna(50) — the axes are 0–1 p
 fractions, and 50 would inject catastrophic outliers, especially in 2015-16 where hustle
 stats (engine__vol) are missing for 60% of players.
 
+**`trajectories.py`** — player archetype trajectory deep-dives. Loads
+`archetype_drift_assignments.csv` directly (no re-freeze, no re-clustering). For every
+player with 5+ qualifying seasons computes: seasons present, distinct archetypes visited,
+season-to-season transition count, A→B→A return flag, and most common archetype. Finds
+and ranks the biggest drifters (most transitions) and most stable players (0 transitions).
+Prints full trajectories for named players with intuition notes for the top drifters.
+Outputs `examples/player_trajectories.csv` (603 rows: 291 NBA 5+-season players + 312 EPL)
+and `examples/trajectory_highlight.png` (step-line chart: top-3 drifters vs. LeBron as
+the stable baseline). Key validation: LeBron/Curry/Giannis each hold one archetype across
+all qualifying seasons; top drifters (Alec Burks, Seth Curry, Bobby Portis) map cleanly
+to real career role-changes and team moves.
+
 **`era_trends.py`** — the complementary cross-era lens. Where drift.py measures structural
 re-sorting (blind to tides by construction), era_trends.py measures raw league averages
 over time — deliberately NOT within-season normalized. Computes league-average shooting
@@ -164,6 +176,18 @@ averages over time, indexed to 2015-16 = 100. The complementary lens to drift.py
 pace). Two modules, two different questions, each honest about what it sees.
 
 `examples/nba_era_trends.csv` — the underlying trend data for the era trends chart.
+
+`examples/player_trajectories.csv` — summary table (trajectories.py output): one row
+per player with 5+ NBA seasons (291 players) plus all 312 EPL players. Columns: player,
+sport, seasons_present, archetypes_seen, n_changes, most_common_archetype. Ranked by
+transitions to surface the biggest drifters at the top.
+
+`examples/trajectory_highlight.png` — step-line trajectory chart (trajectories.py
+output): archetype over time for the top-3 biggest drifters (Alec Burks, Seth Curry,
+Bobby Portis) overlaid against LeBron James as the stable baseline. x = NBA season,
+y = archetype (categorical, ordered defensive → offensive). LeBron's flat blue line vs.
+the jagged drifters is the visual proof that assignment captures real role instability,
+not noise.
 
 ---
 
