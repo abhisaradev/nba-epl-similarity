@@ -220,6 +220,25 @@ chameleons whose archetype changes map to real career events, not noise:
 
 ![Trajectory highlight](examples/trajectory_highlight.png)
 
+### Local interactive comparison tool (`embed_data.py` → `compare.html`)
+
+`embed_data.py` bakes all 3,562 player-seasons (EPL 2023-24 + 9 NBA seasons) into a
+single self-contained HTML file with no server or dependencies required:
+
+```
+python embed_data.py        # writes compare.html (~1.6 MB)
+open compare.html           # open in any browser
+```
+
+The tool lets you pick any two players (both sports, all seasons) and renders three
+SVG radar panels: Player A solo, Player B solo, and a full-width overlay with both
+profiles superimposed. Each radar covers all 13 dimension axes (7 dimensions × vol/eff,
+plus engine volume) with percentage grid lines at 25/50/75/100. An interior score badge
+(0–100) shows shot location tendency for each selected player.
+
+`compare.html` is **not committed** (it contains baked-in processed data) but can be
+regenerated from the pipeline at any time by running `embed_data.py`.
+
 ---
 
 ## Data provenance & licensing

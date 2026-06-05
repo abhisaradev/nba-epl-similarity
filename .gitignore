@@ -35,6 +35,9 @@ __pycache__/
 # ── Local tooling (not project source) ───────────────────────────────────────
 .claude/
 
+# ── Generated local tools (contain baked-in processed data — never commit) ──
+compare.html
+
 # ── Example outputs ARE committed so the README renders results ──────────────
 # (negations must come AFTER the broad *.png / data rules above). Only the
 # curated examples/ folder is allowed through — all raw data stays ignored.
