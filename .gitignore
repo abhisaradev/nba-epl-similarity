@@ -38,6 +38,16 @@ __pycache__/
 # ── Generated local tools (contain baked-in processed data — never commit) ──
 compare.html
 
+# ── docs/ — only compare.html, index.html, and players.json committed ────────
+# Raw stat CSVs and pkl files must not leak through the docs/ directory.
+docs/*.csv
+docs/*.pkl
+docs/nbaapi_*
+docs/PL_Stats_*
+!docs/compare.html
+!docs/index.html
+!docs/players.json
+
 # ── Example outputs ARE committed so the README renders results ──────────────
 # (negations must come AFTER the broad *.png / data rules above). Only the
 # curated examples/ folder is allowed through — all raw data stays ignored.

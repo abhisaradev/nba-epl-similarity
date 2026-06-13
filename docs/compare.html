@@ -1,103 +1,4 @@
-#!/usr/bin/env python3
-"""
-embed_data.py — extract all player-season axis values from the project's
-processed CSVs and bake them into a standalone compare.html.
-
-Run once (or whenever processed CSVs change) to regenerate compare.html.
-compare.html is gitignored — local tool only, contains processed data.
-
-Usage:
-    python embed_data.py          # writes compare.html to project root
-"""
-
-import json
-import math
-import os
-
-import pandas as pd
-
-import datasets
-import pipeline
-
-# ── constants ──────────────────────────────────────────────────────────────
-
-AXES = [
-    "scoring_threat__vol", "scoring_threat__eff",
-    "playmaking__vol",     "playmaking__eff",
-    "ball_progression__vol","ball_progression__eff",
-    "possession_security__vol","possession_security__eff",
-    "defensive_effectiveness__vol","defensive_effectiveness__eff",
-    "physicality__vol",    "physicality__eff",
-    "engine__vol",          # no engine__eff in the model
-]
-
-ALL_DATASETS = ["epl_2324"] + [datasets._nba_id(s) for s in datasets.NBA_SEASONS]
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "compare.html")
-
-
-# ── data extraction ────────────────────────────────────────────────────────
-
-def _safe(v):
-    """Return float or None; never NaN."""
-    try:
-        f = float(v)
-        return None if math.isnan(f) else f
-    except (TypeError, ValueError):
-        return None
-
-
-def extract_all():
-    records = {}
-    print("Extracting player-seasons:")
-    for ds_id in ALL_DATASETS:
-        d      = datasets.get(ds_id)
-        sport  = d["sport"]
-        season = d["true_season"]
-        min_m  = d["min_minutes"]
-
-        # pipeline gives within-season percentile ranks 0-1
-        f = pipeline.feature_frame(d["processed"], sport, min_m)
-
-        # raw CSV for interior_score (already 0-100)
-        raw = pd.read_csv(d["processed"])
-        raw_q = raw[raw["minutes"] >= min_m].copy()
-        int_map = {}
-        if "interior_score" in raw_q.columns:
-            for _, row in raw_q.iterrows():
-                v = _safe(row.get("interior_score"))
-                if v is not None:
-                    int_map[row["player"]] = round(v, 1)
-
-        n = 0
-        for _, row in f.iterrows():
-            player = row["player"]
-            key    = f"{player}||{season}"
-
-            # Axes: 0-1 → 0-100 for chart display
-            axes_vals = {}
-            for ax in AXES:
-                v = _safe(row.get(ax))
-                axes_vals[ax] = round(v * 100, 1) if v is not None else None
-
-            records[key] = {
-                "player":         player,
-                "sport":          sport,
-                "season":         season,
-                "axes":           axes_vals,
-                "interior_score": int_map.get(player),
-            }
-            n += 1
-
-        print(f"  {ds_id:12s}  ({season}, {sport:6s}): {n:3d} players")
-
-    print(f"\nTotal embedded: {len(records)} player-seasons\n")
-    return records
-
-
-# ── HTML template ──────────────────────────────────────────────────────────
-# Placeholder __PLAYER_DATA_JSON__ is replaced with the real JSON at build time.
-
-HTML_TEMPLATE = r"""<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -431,7 +332,32 @@ HTML_TEMPLATE = r"""<!DOCTYPE html>
 
 <script>
 // ── embedded data ──────────────────────────────────────────────────────────
-const PLAYER_DATA = __PLAYER_DATA_JSON__;
+// ── loading state ─────────────────────────────────────────────────────────────
+// Shows a loading message while players.json fetches, and a clear error if it fails.
+// The rest of the JS is identical to the local compare.html.
+document.addEventListener('DOMContentLoaded', () => {
+  const loadingEl = document.createElement('p');
+  loadingEl.id = 'loading-msg';
+  loadingEl.style.cssText = 'text-align:center;color:var(--muted);padding:40px;font-size:14px;';
+  loadingEl.textContent = 'Loading player data…';
+  document.body.appendChild(loadingEl);
+
+  fetch('players.json')
+    .then(r => {
+      if (!r.ok) throw new Error('HTTP ' + r.status + ' loading players.json');
+      return r.json();
+    })
+    .then(data => {
+      loadingEl.remove();
+      initApp(data);
+    })
+    .catch(err => {
+      loadingEl.textContent = '❌ Failed to load player data: ' + err.message;
+      loadingEl.style.color = '#f85149';
+    });
+});
+
+function initApp(PLAYER_DATA) {
 
 // ── constants ──────────────────────────────────────────────────────────────
 const AXES = [
@@ -990,37 +916,7 @@ function setupPicker(side) {
 setupPicker("a");
 setupPicker("b");
 setupWeightPanel();
+} // end initApp
 </script>
 </body>
-</html>"""
-
-
-# ── main ───────────────────────────────────────────────────────────────────
-
-if __name__ == "__main__":
-    import sys
-
-    records = extract_all()
-
-    # --json-only: write processed player data to docs/players.json without
-    # rebuilding compare.html. Used for the GitHub Pages deploy where the data
-    # is fetched at runtime instead of baked inline.
-    if "--json-only" in sys.argv:
-        json_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                 "docs", "players.json")
-        json_str = json.dumps(records, ensure_ascii=False, separators=(",", ":"))
-        with open(json_path, "w", encoding="utf-8") as fh:
-            fh.write(json_str)
-        size_kb = os.path.getsize(json_path) / 1024
-        print(f"Wrote {json_path}  ({size_kb:.0f} KB, {len(records)} player-seasons)")
-        sys.exit(0)
-
-    json_str = json.dumps(records, ensure_ascii=False, separators=(",", ":"))
-    html = HTML_TEMPLATE.replace("__PLAYER_DATA_JSON__", json_str)
-
-    with open(OUT, "w", encoding="utf-8") as fh:
-        fh.write(html)
-
-    size_kb = os.path.getsize(OUT) / 1024
-    print(f"Wrote {OUT}  ({size_kb:.0f} KB)")
-    print(f"\nOpen in browser:  open \"{OUT}\"")
+</html>
