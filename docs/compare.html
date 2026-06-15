@@ -21,7 +21,13 @@
   body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; font-size: 14px; min-height: 100vh; }
   h1 { text-align: center; padding: 18px 0 4px; font-size: 1.3rem; letter-spacing: .02em; }
   h1 span { color: var(--muted); font-weight: 400; font-size: 0.9rem; }
-  .subtitle { text-align: center; color: var(--muted); font-size: 0.8rem; padding-bottom: 18px; }
+  .subtitle { text-align: center; color: var(--muted); font-size: 0.8rem; padding-bottom: 12px; }
+
+  /* ── tabs ── */
+  .tab-nav { display: flex; gap: 0; padding: 0 16px; max-width: 1100px; margin: 0 auto 16px; border-bottom: 1px solid var(--border); }
+  .tab-btn { padding: 8px 20px; border: none; border-bottom: 2px solid transparent; background: transparent; color: var(--muted); font-size: 13px; font-weight: 500; cursor: pointer; transition: all .15s; margin-bottom: -1px; }
+  .tab-btn.active { color: var(--text); border-bottom-color: var(--a); }
+  .tab-btn:hover:not(.active) { color: var(--text); }
 
   /* ── pickers ── */
   .pickers { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 16px 16px; max-width: 1100px; margin: 0 auto; }
@@ -30,25 +36,12 @@
   .picker-card h3 .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
   .dot-a { background: var(--a); }
   .dot-b { background: var(--b); }
-
   .search-wrap { position: relative; }
-  .search-input {
-    width: 100%; padding: 7px 10px; background: var(--bg);
-    border: 1px solid var(--border); border-radius: 6px;
-    color: var(--text); font-size: 13px; outline: none;
-  }
+  .search-input { width: 100%; padding: 7px 10px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-size: 13px; outline: none; }
   .search-input:focus { border-color: var(--a); }
-  .dropdown {
-    display: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 100;
-    background: var(--card); border: 1px solid var(--border); border-radius: 6px;
-    max-height: 220px; overflow-y: auto; margin-top: 3px;
-    box-shadow: 0 8px 24px rgba(0,0,0,.5);
-  }
+  .dropdown { display: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 100; background: var(--card); border: 1px solid var(--border); border-radius: 6px; max-height: 220px; overflow-y: auto; margin-top: 3px; box-shadow: 0 8px 24px rgba(0,0,0,.5); }
   .dropdown.open { display: block; }
-  .dd-item {
-    padding: 7px 10px; cursor: pointer; display: flex; align-items: center; gap: 8px;
-    font-size: 13px; border-bottom: 1px solid var(--grid);
-  }
+  .dd-item { padding: 7px 10px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-size: 13px; border-bottom: 1px solid var(--grid); }
   .dd-item:last-child { border-bottom: none; }
   .dd-item:hover, .dd-item.focused { background: var(--grid); }
   .dd-item .player-name { flex: 1; }
@@ -57,98 +50,65 @@
   .sport-badge.nba { background: rgba(56,139,253,.2); color: var(--nba); }
   .sport-badge.soccer { background: rgba(63,185,80,.2); color: var(--epl); }
   .no-results { padding: 10px; color: var(--muted); font-size: 12px; text-align: center; }
-
   .filter-bar { display: flex; gap: 6px; margin-bottom: 8px; }
-  .filter-btn {
-    padding: 3px 10px; border-radius: 12px; border: 1px solid var(--border);
-    background: transparent; color: var(--muted); font-size: 11px; cursor: pointer;
-    transition: all .15s;
-  }
+  .filter-btn { padding: 3px 10px; border-radius: 12px; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 11px; cursor: pointer; transition: all .15s; }
   .filter-btn.active { border-color: var(--a); color: var(--text); background: rgba(88,166,255,.1); }
-
-  .selected-info {
-    margin-top: 8px; font-size: 12px; min-height: 26px;
-    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-  }
+  .selected-info { margin-top: 8px; font-size: 12px; min-height: 26px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .selected-name { font-weight: 600; }
-  .clear-btn {
-    font-size: 11px; color: var(--muted); background: none; border: 1px solid var(--border);
-    border-radius: 4px; padding: 2px 7px; cursor: pointer;
-  }
+  .clear-btn { font-size: 11px; color: var(--muted); background: none; border: 1px solid var(--border); border-radius: 4px; padding: 2px 7px; cursor: pointer; }
   .clear-btn:hover { color: var(--text); }
 
-  /* ── dimension weight panel ── */
+  /* ── top comps ── */
+  .top-comps-wrap { padding: 0 16px 14px; max-width: 1100px; margin: 0 auto; }
+  .top-comps-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+  .comp-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .comp-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+  .comp-rank { font-size: 10px; color: var(--muted); }
+  .comp-name { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .comp-meta { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+  .comp-score-row { display: flex; align-items: baseline; gap: 5px; margin: 4px 0 2px; }
+  .comp-score { font-size: 1.5rem; font-weight: 800; }
+  .score-high { color: #3fb950; }
+  .score-mid  { color: #d29922; }
+  .score-low  { color: #f85149; }
+  .comp-score-label { font-size: 10px; color: var(--muted); }
+  .load-b-btn { margin-top: 4px; padding: 4px 10px; border-radius: 5px; border: 1px solid var(--border); background: none; color: var(--a); font-size: 11px; cursor: pointer; transition: all .15s; text-align: left; width: fit-content; }
+  .load-b-btn:hover { background: rgba(88,166,255,.1); border-color: var(--a); }
+
+  /* ── weights ── */
   .weights-wrap { padding: 0 16px 12px; max-width: 1100px; margin: 0 auto; }
   .weights-header { display: flex; align-items: center; gap: 10px; }
-  .weights-toggle {
-    background: var(--card); border: 1px solid var(--border); border-radius: 6px;
-    color: var(--muted); font-size: 12px; padding: 5px 12px; cursor: pointer;
-    transition: all .15s; letter-spacing: .01em;
-  }
+  .weights-toggle { background: var(--card); border: 1px solid var(--border); border-radius: 6px; color: var(--muted); font-size: 12px; padding: 5px 12px; cursor: pointer; transition: all .15s; letter-spacing: .01em; }
   .weights-toggle:hover { color: var(--text); border-color: var(--a); }
   .weights-toggle.active { color: var(--a); border-color: var(--a); background: rgba(88,166,255,.08); }
-  .weights-active-dot {
-    width: 6px; height: 6px; border-radius: 50%; background: var(--a);
-    display: none; flex-shrink: 0;
-  }
+  .weights-active-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--a); display: none; flex-shrink: 0; }
   .weights-active-dot.visible { display: block; }
-  .weights-body {
-    display: none; margin-top: 8px;
-    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
-    padding: 14px 16px;
-  }
+  .clear-all-btn { margin-left: auto; padding: 5px 14px; border-radius: 6px; border: 1px solid var(--border); background: none; color: var(--muted); font-size: 12px; cursor: pointer; transition: all .15s; }
+  .clear-all-btn:hover { color: var(--text); border-color: var(--muted); }
+  .weights-body { display: none; margin-top: 8px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
   .weights-body.open { display: block; }
-  .weights-note {
-    font-size: 11px; color: var(--muted); margin-bottom: 14px;
-    padding-bottom: 10px; border-bottom: 1px solid var(--grid); line-height: 1.5;
-  }
+  .weights-note { font-size: 11px; color: var(--muted); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--grid); line-height: 1.5; }
   .weights-note strong { color: var(--text); }
-  .slider-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 10px 24px; margin-bottom: 12px;
-  }
+  .slider-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px 24px; margin-bottom: 12px; }
   .slider-row { display: flex; align-items: center; gap: 8px; }
   .slider-label { font-size: 11px; color: var(--muted); width: 78px; flex-shrink: 0; }
-  .weight-slider {
-    flex: 1; -webkit-appearance: none; appearance: none;
-    height: 4px; border-radius: 2px; outline: none; cursor: pointer;
-    /* initial fill set by JS at 33.3% = 1.0 / 3.0 */
-    background: linear-gradient(to right, #58a6ff 33.3%, #21262d 33.3%);
-  }
-  .weight-slider::-webkit-slider-thumb {
-    -webkit-appearance: none; width: 14px; height: 14px;
-    border-radius: 50%; background: #58a6ff; cursor: pointer;
-    box-shadow: 0 0 0 2px rgba(88,166,255,.25);
-  }
-  .weight-slider::-moz-range-thumb {
-    width: 14px; height: 14px; border-radius: 50%; background: #58a6ff;
-    cursor: pointer; border: none; box-shadow: 0 0 0 2px rgba(88,166,255,.25);
-  }
-  .weight-val {
-    font-size: 11px; font-weight: 700; color: var(--text);
-    width: 32px; text-align: right; flex-shrink: 0; font-variant-numeric: tabular-nums;
-  }
+  .weight-slider { flex: 1; -webkit-appearance: none; appearance: none; height: 4px; border-radius: 2px; outline: none; cursor: pointer; background: linear-gradient(to right, #58a6ff 33.3%, #21262d 33.3%); }
+  .weight-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: #58a6ff; cursor: pointer; box-shadow: 0 0 0 2px rgba(88,166,255,.25); }
+  .weight-slider::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: #58a6ff; cursor: pointer; border: none; box-shadow: 0 0 0 2px rgba(88,166,255,.25); }
+  .weight-val { font-size: 11px; font-weight: 700; color: var(--text); width: 32px; text-align: right; flex-shrink: 0; font-variant-numeric: tabular-nums; }
   .weight-val.zero { color: var(--muted); }
   .weights-actions { display: flex; align-items: center; gap: 12px; padding-top: 10px; border-top: 1px solid var(--grid); }
-  .reset-btn {
-    font-size: 11px; padding: 4px 12px; border-radius: 5px;
-    border: 1px solid var(--border); background: none;
-    color: var(--muted); cursor: pointer; transition: all .15s;
-  }
+  .reset-btn { font-size: 11px; padding: 4px 12px; border-radius: 5px; border: 1px solid var(--border); background: none; color: var(--muted); cursor: pointer; transition: all .15s; }
   .reset-btn:hover { color: var(--text); border-color: var(--muted); }
-
-  /* small weight badge shown in sidebar/table when w ≠ 1.0 */
   .w-badge { font-size: 9px; color: #58a6ff; opacity: .85; margin-left: 2px; }
   .w-badge.zero { color: var(--muted); }
 
-  /* ── radar panels ── */
+  /* ── radars ── */
   .radars-top { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 16px 12px; max-width: 1100px; margin: 0 auto; }
   .radar-panel { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px; }
   .radar-panel > h3 { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
   .panel-body { display: flex; gap: 10px; align-items: flex-start; }
   .radar-svg-wrap { flex: 1; min-width: 0; overflow: hidden; }
-
-  /* ── sidebar scorecard ── */
   .sidebar { width: 152px; flex-shrink: 0; padding-top: 2px; }
   .sidebar-row { margin-bottom: 9px; }
   .sidebar-label { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 3px; }
@@ -160,7 +120,7 @@
   .sidebar-interior-label { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
   .int-badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 4px; background: rgba(247,129,102,.18); color: #f0a070; }
 
-  /* ── overlay panel ── */
+  /* ── overlay ── */
   .radar-overlay-wrap { padding: 0 16px 12px; max-width: 1100px; margin: 0 auto; }
   .radar-overlay-panel { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px; text-align: center; }
   .radar-overlay-panel > h3 { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
@@ -169,10 +129,9 @@
   .legend-line { display: inline-block; width: 22px; height: 2px; vertical-align: middle; }
   .legend-line.solid { background: var(--a); }
   .legend-line.dashed { background: linear-gradient(90deg, var(--b) 60%, transparent 60%); background-size: 6px; }
-
   svg { display: block; margin: 0 auto; }
 
-  /* ── comparison section ── */
+  /* ── comparison ── */
   .comparison-wrap { padding: 0 16px 24px; max-width: 1100px; margin: 0 auto; display: none; }
   .comparison-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; }
   .comparison-header { display: flex; align-items: center; gap: 20px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--grid); }
@@ -184,20 +143,50 @@
   .sim-red   { color: #f85149; }
   .sim-desc { font-size: 11px; color: var(--muted); line-height: 1.6; }
   .dim-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-  .dim-table th {
-    color: var(--muted); font-weight: 500; padding: 5px 10px;
-    border-bottom: 1px solid var(--border); text-align: right;
-  }
+  .dim-table th { color: var(--muted); font-weight: 500; padding: 5px 10px; border-bottom: 1px solid var(--border); text-align: right; }
   .dim-table th:first-child { text-align: left; }
-  .dim-table td {
-    padding: 6px 10px; border-bottom: 1px solid var(--grid);
-    text-align: right; font-variant-numeric: tabular-nums;
-  }
+  .dim-table td { padding: 6px 10px; border-bottom: 1px solid var(--grid); text-align: right; font-variant-numeric: tabular-nums; }
   .dim-table td:first-child { text-align: left; font-weight: 500; color: var(--text); }
   .dim-table tr:last-child td { border-bottom: none; }
   .gap-a { color: var(--a); font-weight: 700; }
   .gap-b { color: var(--b); font-weight: 700; }
   .gap-close { color: var(--muted); }
+
+  /* ── database ── */
+  .db-wrap { padding: 0 16px 24px; max-width: 1100px; margin: 0 auto; }
+  .db-filters { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px; margin-bottom: 12px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+  .db-fg { display: flex; flex-direction: column; gap: 4px; }
+  .db-fl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+  .db-input, .db-select { padding: 5px 9px; background: var(--bg); border: 1px solid var(--border); border-radius: 5px; color: var(--text); font-size: 12px; outline: none; }
+  .db-input:focus, .db-select:focus { border-color: var(--a); }
+  .db-select { cursor: pointer; }
+  .db-min-row { display: flex; align-items: center; gap: 6px; }
+  .db-min-input { width: 52px; padding: 5px 7px; background: var(--bg); border: 1px solid var(--border); border-radius: 5px; color: var(--text); font-size: 12px; outline: none; text-align: center; }
+  .db-min-input:focus { border-color: var(--a); }
+  .db-count { font-size: 11px; color: var(--muted); }
+  .db-table-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .db-table-scroll { overflow-x: auto; max-height: 560px; overflow-y: auto; }
+  .db-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  .db-table thead { position: sticky; top: 0; z-index: 10; }
+  .db-table th { background: var(--grid); color: var(--muted); font-weight: 500; padding: 7px 10px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; transition: color .1s; }
+  .db-table th:nth-child(1), .db-table th:nth-child(2), .db-table th:nth-child(3) { text-align: left; }
+  .db-table th:hover { color: var(--text); }
+  .db-table th.sort-asc::after  { content: " ▲"; font-size: 9px; }
+  .db-table th.sort-desc::after { content: " ▼"; font-size: 9px; }
+  .db-table td { padding: 5px 10px; border-bottom: 1px solid var(--grid); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .db-table td:nth-child(1) { text-align: left; white-space: normal; min-width: 140px; }
+  .db-table td:nth-child(2), .db-table td:nth-child(3) { text-align: left; }
+  .db-table tr:last-child td { border-bottom: none; }
+  .db-table tbody tr { cursor: pointer; transition: background .1s; }
+  .db-table tbody tr:nth-child(even) { background: rgba(255,255,255,.02); }
+  .db-table tbody tr:hover { background: var(--grid); }
+  .db-pagination { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 10px; border-top: 1px solid var(--grid); font-size: 12px; color: var(--muted); }
+  .db-page-btn { padding: 4px 12px; border-radius: 5px; border: 1px solid var(--border); background: none; color: var(--text); font-size: 12px; cursor: pointer; transition: all .15s; }
+  .db-page-btn:hover { border-color: var(--a); color: var(--a); }
+  .db-page-btn:disabled { opacity: .35; cursor: default; pointer-events: none; }
+  .cv-high { color: #3fb950; font-weight: 600; }
+  .cv-mid  { color: var(--text); }
+  .cv-low  { color: var(--muted); }
 
   /* ── footer ── */
   footer { text-align: center; padding: 14px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--grid); margin-top: 4px; }
@@ -207,6 +196,14 @@
 
 <h1>NBA ↔ EPL Radar Comparison <span>— within-season normalized</span></h1>
 <p class="subtitle">All axes are percentile ranks within each player's own league-season (0 = worst, 100 = best).</p>
+
+<nav class="tab-nav">
+  <button class="tab-btn active" id="tab-btn-comparison">Comparison</button>
+  <button class="tab-btn" id="tab-btn-database">Database</button>
+</nav>
+
+<!-- ── Comparison tab ── -->
+<div id="tab-comparison">
 
 <div class="pickers">
   <div class="picker-card" id="card-a">
@@ -237,11 +234,18 @@
   </div>
 </div>
 
-<!-- Dimension weight sliders — collapsed by default -->
+<!-- Top cross-sport comps — shown when Player A is selected -->
+<div class="top-comps-wrap" id="top-comps-wrap" style="display:none">
+  <div class="top-comps-label">Top cross-sport matches</div>
+  <div class="comp-cards" id="comp-cards"></div>
+</div>
+
+<!-- Dimension weight sliders -->
 <div class="weights-wrap">
   <div class="weights-header">
     <button class="weights-toggle" id="weights-toggle">Dimension weights ▾</button>
     <span class="weights-active-dot" id="weights-active-dot" title="Custom weights active"></span>
+    <button class="clear-all-btn" id="clear-all-btn">Clear all</button>
   </div>
   <div class="weights-body" id="weights-body">
     <p class="weights-note">
@@ -250,41 +254,13 @@
       Set a dimension to 0× to exclude it from similarity entirely.
     </p>
     <div class="slider-grid">
-      <div class="slider-row">
-        <span class="slider-label">Scoring</span>
-        <input class="weight-slider" id="slider-scoring" type="range" min="0" max="3" step="0.1" value="1">
-        <span class="weight-val" id="weight-val-scoring">1.0×</span>
-      </div>
-      <div class="slider-row">
-        <span class="slider-label">Playmaking</span>
-        <input class="weight-slider" id="slider-playmaking" type="range" min="0" max="3" step="0.1" value="1">
-        <span class="weight-val" id="weight-val-playmaking">1.0×</span>
-      </div>
-      <div class="slider-row">
-        <span class="slider-label">Progression</span>
-        <input class="weight-slider" id="slider-progression" type="range" min="0" max="3" step="0.1" value="1">
-        <span class="weight-val" id="weight-val-progression">1.0×</span>
-      </div>
-      <div class="slider-row">
-        <span class="slider-label">Possession</span>
-        <input class="weight-slider" id="slider-possession" type="range" min="0" max="3" step="0.1" value="1">
-        <span class="weight-val" id="weight-val-possession">1.0×</span>
-      </div>
-      <div class="slider-row">
-        <span class="slider-label">Defense</span>
-        <input class="weight-slider" id="slider-defense" type="range" min="0" max="3" step="0.1" value="1">
-        <span class="weight-val" id="weight-val-defense">1.0×</span>
-      </div>
-      <div class="slider-row">
-        <span class="slider-label">Physicality</span>
-        <input class="weight-slider" id="slider-physicality" type="range" min="0" max="3" step="0.1" value="1">
-        <span class="weight-val" id="weight-val-physicality">1.0×</span>
-      </div>
-      <div class="slider-row">
-        <span class="slider-label">Engine</span>
-        <input class="weight-slider" id="slider-engine" type="range" min="0" max="3" step="0.1" value="1">
-        <span class="weight-val" id="weight-val-engine">1.0×</span>
-      </div>
+      <div class="slider-row"><span class="slider-label">Scoring</span><input class="weight-slider" id="slider-scoring" type="range" min="0" max="3" step="0.1" value="1"><span class="weight-val" id="weight-val-scoring">1.0×</span></div>
+      <div class="slider-row"><span class="slider-label">Playmaking</span><input class="weight-slider" id="slider-playmaking" type="range" min="0" max="3" step="0.1" value="1"><span class="weight-val" id="weight-val-playmaking">1.0×</span></div>
+      <div class="slider-row"><span class="slider-label">Progression</span><input class="weight-slider" id="slider-progression" type="range" min="0" max="3" step="0.1" value="1"><span class="weight-val" id="weight-val-progression">1.0×</span></div>
+      <div class="slider-row"><span class="slider-label">Possession</span><input class="weight-slider" id="slider-possession" type="range" min="0" max="3" step="0.1" value="1"><span class="weight-val" id="weight-val-possession">1.0×</span></div>
+      <div class="slider-row"><span class="slider-label">Defense</span><input class="weight-slider" id="slider-defense" type="range" min="0" max="3" step="0.1" value="1"><span class="weight-val" id="weight-val-defense">1.0×</span></div>
+      <div class="slider-row"><span class="slider-label">Physicality</span><input class="weight-slider" id="slider-physicality" type="range" min="0" max="3" step="0.1" value="1"><span class="weight-val" id="weight-val-physicality">1.0×</span></div>
+      <div class="slider-row"><span class="slider-label">Engine</span><input class="weight-slider" id="slider-engine" type="range" min="0" max="3" step="0.1" value="1"><span class="weight-val" id="weight-val-engine">1.0×</span></div>
     </div>
     <div class="weights-actions">
       <button class="reset-btn" id="weights-reset">Reset to defaults</button>
@@ -292,7 +268,7 @@
   </div>
 </div>
 
-<!-- Solo radar panels — each has radar (left) + scorecard sidebar (right) -->
+<!-- Solo radar panels -->
 <div class="radars-top">
   <div class="radar-panel">
     <h3><span class="dot dot-a"></span>Player A</h3>
@@ -322,8 +298,72 @@
   </div>
 </div>
 
-<!-- Comparison section — shown only when both players are selected -->
 <div class="comparison-wrap" id="comparison-wrap"></div>
+
+</div><!-- /tab-comparison -->
+
+<!-- ── Database tab ── -->
+<div id="tab-database" style="display:none">
+<div class="db-wrap">
+  <div class="db-filters">
+    <div class="db-fg">
+      <span class="db-fl">Search name</span>
+      <input class="db-input" id="db-search" placeholder="Player name…" style="width:180px">
+    </div>
+    <div class="db-fg">
+      <span class="db-fl">Sport</span>
+      <select class="db-select" id="db-sport">
+        <option value="all">All</option>
+        <option value="nba">NBA</option>
+        <option value="soccer">EPL</option>
+      </select>
+    </div>
+    <div class="db-fg">
+      <span class="db-fl">Season</span>
+      <select class="db-select" id="db-season"><option value="all">All seasons</option></select>
+    </div>
+    <div class="db-fg">
+      <span class="db-fl">Dimension</span>
+      <select class="db-select" id="db-dim">
+        <option value="">— any —</option>
+        <option value="scoring_threat__vol">Scoring (vol)</option>
+        <option value="scoring_threat__eff">Scoring (eff)</option>
+        <option value="playmaking__vol">Playmaking (vol)</option>
+        <option value="playmaking__eff">Playmaking (eff)</option>
+        <option value="ball_progression__vol">Progression (vol)</option>
+        <option value="ball_progression__eff">Progression (eff)</option>
+        <option value="possession_security__vol">Possession (vol)</option>
+        <option value="possession_security__eff">Possession (eff)</option>
+        <option value="defensive_effectiveness__vol">Defense (vol)</option>
+        <option value="defensive_effectiveness__eff">Defense (eff)</option>
+        <option value="physicality__vol">Physicality (vol)</option>
+        <option value="physicality__eff">Physicality (eff)</option>
+        <option value="engine__vol">Engine</option>
+      </select>
+    </div>
+    <div class="db-fg">
+      <span class="db-fl">Min score</span>
+      <div class="db-min-row">
+        <input class="db-min-input" id="db-min" type="number" min="0" max="100" value="0" placeholder="0">
+        <span style="font-size:11px;color:var(--muted)">/ 100</span>
+      </div>
+    </div>
+    <div class="db-fg" style="margin-left:auto;justify-content:flex-end">
+      <span class="db-fl">&nbsp;</span>
+      <span class="db-count" id="db-count"></span>
+    </div>
+  </div>
+  <div class="db-table-wrap">
+    <div class="db-table-scroll">
+      <table class="db-table">
+        <thead id="db-thead"></thead>
+        <tbody id="db-tbody"></tbody>
+      </table>
+    </div>
+    <div class="db-pagination" id="db-pagination"></div>
+  </div>
+</div>
+</div><!-- /tab-database -->
 
 <footer>
   Within-season normalized — axes are percentile ranks inside each player's own league-season.
@@ -331,10 +371,6 @@
 </footer>
 
 <script>
-// ── embedded data ──────────────────────────────────────────────────────────
-// ── loading state ─────────────────────────────────────────────────────────────
-// Shows a loading message while players.json fetches, and a clear error if it fails.
-// The rest of the JS is identical to the local compare.html.
 document.addEventListener('DOMContentLoaded', () => {
   const loadingEl = document.createElement('p');
   loadingEl.id = 'loading-msg';
@@ -370,19 +406,16 @@ const AXES = [
   "engine__vol"
 ];
 
-// Two-line labels — distributed around the perimeter by the radar drawing code.
 const AXIS_LABELS = [
-  ["Scoring","(vol)"],   ["Scoring","(eff)"],
+  ["Scoring","(vol)"],["Scoring","(eff)"],
   ["Playmaking","(vol)"],["Playmaking","(eff)"],
   ["Progression","(vol)"],["Progression","(eff)"],
   ["Possession","(vol)"],["Possession","(eff)"],
-  ["Defense","(vol)"],   ["Defense","(eff)"],
+  ["Defense","(vol)"],["Defense","(eff)"],
   ["Physicality","(vol)"],["Physicality","(eff)"],
   ["Engine",""]
 ];
 
-// 7 dimensions for sidebar scorecards and comparison table.
-// Each dim's axes are used both for scoring and for applying weight in similarity.
 const DIMS = [
   {name:"Scoring",     key:"scoring",     axes:["scoring_threat__vol","scoring_threat__eff"]},
   {name:"Playmaking",  key:"playmaking",  axes:["playmaking__vol","playmaking__eff"]},
@@ -393,12 +426,31 @@ const DIMS = [
   {name:"Engine",      key:"engine",      axes:["engine__vol"]},
 ];
 
+// All 16 columns for the database table (3 meta + 13 axis values)
+const DB_COLS = [
+  {label:"Player",  key:"player",  type:"str", ax:null},
+  {label:"Sport",   key:"sport",   type:"str", ax:null},
+  {label:"Season",  key:"season",  type:"str", ax:null},
+  {label:"Scr vol", key:"c_stv",   type:"num", ax:"scoring_threat__vol"},
+  {label:"Scr eff", key:"c_ste",   type:"num", ax:"scoring_threat__eff"},
+  {label:"Pmk vol", key:"c_pmv",   type:"num", ax:"playmaking__vol"},
+  {label:"Pmk eff", key:"c_pme",   type:"num", ax:"playmaking__eff"},
+  {label:"Prg vol", key:"c_prv",   type:"num", ax:"ball_progression__vol"},
+  {label:"Prg eff", key:"c_pre",   type:"num", ax:"ball_progression__eff"},
+  {label:"Pos vol", key:"c_psv",   type:"num", ax:"possession_security__vol"},
+  {label:"Pos eff", key:"c_pse",   type:"num", ax:"possession_security__eff"},
+  {label:"Def vol", key:"c_dfv",   type:"num", ax:"defensive_effectiveness__vol"},
+  {label:"Def eff", key:"c_dfe",   type:"num", ax:"defensive_effectiveness__eff"},
+  {label:"Phy vol", key:"c_phv",   type:"num", ax:"physicality__vol"},
+  {label:"Phy eff", key:"c_phe",   type:"num", ax:"physicality__eff"},
+  {label:"Engine",  key:"c_eng",   type:"num", ax:"engine__vol"},
+];
+
 const COLOR_A = "#58a6ff";
 const COLOR_B = "#f78166";
 const N = AXES.length;
 
 // ── weights state ──────────────────────────────────────────────────────────
-// Keyed by dim.key; default 1.0 for all dimensions.
 const weights = {};
 for (const dim of DIMS) weights[dim.key] = 1.0;
 
@@ -408,20 +460,25 @@ function anyNonDefault() {
 
 // ── search index ───────────────────────────────────────────────────────────
 const ENTRIES = Object.entries(PLAYER_DATA)
-  .map(([key, d]) => ({
-    key,
-    player: d.player,
-    sport:  d.sport,
-    season: d.season,
-    search: d.player.toLowerCase()
-  }))
+  .map(([key, d]) => ({key, player:d.player, sport:d.sport, season:d.season, search:d.player.toLowerCase()}))
   .sort((a, b) => a.player.localeCompare(b.player));
 
-// ── state ──────────────────────────────────────────────────────────────────
+// ── app state ──────────────────────────────────────────────────────────────
 const state = { a: null, b: null };
 const sportFilter = { a: "all", b: "all" };
 
-// ── SVG radar ──────────────────────────────────────────────────────────────
+// ── tab switching ──────────────────────────────────────────────────────────
+function switchTab(tab) {
+  document.getElementById("tab-comparison").style.display = tab === "comparison" ? "" : "none";
+  document.getElementById("tab-database").style.display   = tab === "database"   ? "" : "none";
+  document.getElementById("tab-btn-comparison").classList.toggle("active", tab === "comparison");
+  document.getElementById("tab-btn-database").classList.toggle("active",   tab === "database");
+  if (tab === "database") renderDbTable();
+}
+document.getElementById("tab-btn-comparison").addEventListener("click", () => switchTab("comparison"));
+document.getElementById("tab-btn-database").addEventListener("click",   () => switchTab("database"));
+
+// ── SVG helpers ────────────────────────────────────────────────────────────
 const NS = "http://www.w3.org/2000/svg";
 function mk(tag, attrs, text) {
   const el = document.createElementNS(NS, tag);
@@ -430,492 +487,505 @@ function mk(tag, attrs, text) {
   return el;
 }
 
+// ── radar drawing ──────────────────────────────────────────────────────────
 function drawRadar(svgId, datasets) {
   const svg = document.getElementById(svgId);
-  const W = +svg.getAttribute("width");
-  const H = +svg.getAttribute("height");
-  const cx = W / 2, cy = H / 2;
-
-  // Radar always shows raw unweighted percentiles — weights never touch this function.
-  const r      = Math.min(cx, cy) * 0.55;
-  const labelR = r * 1.44;
+  const W = +svg.getAttribute("width"), H = +svg.getAttribute("height");
+  const cx = W/2, cy = H/2, r = Math.min(cx,cy)*0.55, labelR = r*1.44;
 
   svg.innerHTML = "";
+  svg.appendChild(mk("rect", {width:W, height:H, fill:"#0d1117", rx:8}));
 
-  // Background
-  svg.appendChild(mk("rect", { width: W, height: H, fill: "#0d1117", rx: 8 }));
-
-  // Grid rings at 25 / 50 / 75 / 100 %
-  for (const pct of [25, 50, 75, 100]) {
-    svg.appendChild(mk("circle", {
-      cx, cy, r: r * pct / 100,
-      fill: "none", stroke: "#21262d",
-      "stroke-width": pct === 50 ? 1.2 : 0.7
-    }));
+  for (const pct of [25,50,75,100]) {
+    svg.appendChild(mk("circle", {cx, cy, r:r*pct/100, fill:"none", stroke:"#21262d", "stroke-width":pct===50?1.2:0.7}));
   }
-  svg.appendChild(mk("text", {
-    x: cx + r * 0.5 + 3, y: cy - 3,
-    fill: "#484f58", "font-size": 8, "text-anchor": "start"
-  }, "50"));
+  svg.appendChild(mk("text", {x:cx+r*0.5+3, y:cy-3, fill:"#484f58", "font-size":8, "text-anchor":"start"}, "50"));
 
-  // Axis spokes
-  for (let i = 0; i < N; i++) {
-    const angle = (i / N) * 2 * Math.PI - Math.PI / 2;
-    svg.appendChild(mk("line", {
-      x1: cx, y1: cy,
-      x2: cx + r * Math.cos(angle),
-      y2: cy + r * Math.sin(angle),
-      stroke: "#21262d", "stroke-width": 1
-    }));
+  for (let i=0; i<N; i++) {
+    const angle = (i/N)*2*Math.PI - Math.PI/2;
+    svg.appendChild(mk("line", {x1:cx, y1:cy, x2:cx+r*Math.cos(angle), y2:cy+r*Math.sin(angle), stroke:"#21262d", "stroke-width":1}));
   }
 
-  // Axis labels — two tspan lines at each tip, evenly around the perimeter
-  for (let i = 0; i < N; i++) {
-    const angle = (i / N) * 2 * Math.PI - Math.PI / 2;
-    const lx = cx + labelR * Math.cos(angle);
-    const ly = cy + labelR * Math.sin(angle);
+  for (let i=0; i<N; i++) {
+    const angle = (i/N)*2*Math.PI - Math.PI/2;
+    const lx = cx+labelR*Math.cos(angle), ly = cy+labelR*Math.sin(angle);
     const [line1, line2] = AXIS_LABELS[i];
-
     const t = document.createElementNS(NS, "text");
-    t.setAttribute("text-anchor", "middle");
-    t.setAttribute("dominant-baseline", "middle");
-    t.setAttribute("font-family", "system-ui, sans-serif");
-
+    t.setAttribute("text-anchor","middle"); t.setAttribute("dominant-baseline","middle");
+    t.setAttribute("font-family","system-ui, sans-serif");
     const s1 = document.createElementNS(NS, "tspan");
-    s1.setAttribute("x", lx);
-    s1.setAttribute("dy", line2 ? "-5" : "0");
-    s1.setAttribute("fill", "#9198a1");
-    s1.setAttribute("font-size", "9");
-    s1.textContent = line1;
-    t.appendChild(s1);
-
+    s1.setAttribute("x",lx); s1.setAttribute("dy",line2?"-5":"0");
+    s1.setAttribute("fill","#9198a1"); s1.setAttribute("font-size","9");
+    s1.textContent = line1; t.appendChild(s1);
     if (line2) {
       const s2 = document.createElementNS(NS, "tspan");
-      s2.setAttribute("x", lx);
-      s2.setAttribute("dy", "12");
-      s2.setAttribute("fill", "#55606b");
-      s2.setAttribute("font-size", "8");
-      s2.textContent = line2;
-      t.appendChild(s2);
+      s2.setAttribute("x",lx); s2.setAttribute("dy","12");
+      s2.setAttribute("fill","#55606b"); s2.setAttribute("font-size","8");
+      s2.textContent = line2; t.appendChild(s2);
     }
     svg.appendChild(t);
   }
 
-  // Player polygons — fills first, then strokes + vertex dots
-  const polyLayers = [];
-  for (const { data, color, dashed, alpha } of datasets) {
+  const layers = [];
+  for (const {data, color, dashed, alpha} of datasets) {
     if (!data) continue;
     const pts = [];
-    for (let i = 0; i < N; i++) {
+    for (let i=0; i<N; i++) {
       const v = data.axes[AXES[i]];
-      const val = (v !== null && v !== undefined) ? v : 0;
-      const angle = (i / N) * 2 * Math.PI - Math.PI / 2;
-      const pr = r * val / 100;
-      pts.push([cx + pr * Math.cos(angle), cy + pr * Math.sin(angle)]);
+      const val = (v!==null&&v!==undefined) ? v : 0;
+      const angle = (i/N)*2*Math.PI - Math.PI/2;
+      const pr = r*val/100;
+      pts.push([cx+pr*Math.cos(angle), cy+pr*Math.sin(angle)]);
     }
-    polyLayers.push({ pts, color, dashed, alpha, data });
+    layers.push({pts, color, dashed, alpha, data});
   }
-
-  for (const { pts, color, alpha } of polyLayers) {
-    svg.appendChild(mk("polygon", {
-      points: pts.map(p => p.join(",")).join(" "),
-      fill: color, "fill-opacity": alpha ?? 0.12, stroke: "none"
-    }));
+  for (const {pts, color, alpha} of layers) {
+    svg.appendChild(mk("polygon", {points:pts.map(p=>p.join(",")).join(" "), fill:color, "fill-opacity":alpha??0.12, stroke:"none"}));
   }
-  for (const { pts, color, dashed, data } of polyLayers) {
-    svg.appendChild(mk("polygon", {
-      points: pts.map(p => p.join(",")).join(" "),
-      fill: "none", stroke: color, "stroke-width": 2,
-      "stroke-linejoin": "round",
-      "stroke-dasharray": dashed ? "5,3" : "none"
-    }));
-    for (let i = 0; i < N; i++) {
+  for (const {pts, color, dashed, data} of layers) {
+    svg.appendChild(mk("polygon", {points:pts.map(p=>p.join(",")).join(" "), fill:"none", stroke:color, "stroke-width":2, "stroke-linejoin":"round", "stroke-dasharray":dashed?"5,3":"none"}));
+    for (let i=0; i<N; i++) {
       const v = data.axes[AXES[i]];
-      if (v !== null && v !== undefined) {
-        svg.appendChild(mk("circle", { cx: pts[i][0], cy: pts[i][1], r: 2.5, fill: color }));
-      }
+      if (v!==null&&v!==undefined) svg.appendChild(mk("circle", {cx:pts[i][0], cy:pts[i][1], r:2.5, fill:color}));
     }
   }
-
-  svg.appendChild(mk("circle", { cx, cy, r: 3, fill: "#484f58" }));
+  svg.appendChild(mk("circle", {cx, cy, r:3, fill:"#484f58"}));
 }
 
 function drawEmpty(svgId, msg) {
   const svg = document.getElementById(svgId);
   const W = +svg.getAttribute("width"), H = +svg.getAttribute("height");
   svg.innerHTML = "";
-  svg.appendChild(mk("rect", { width: W, height: H, fill: "#0d1117", rx: 8 }));
-  svg.appendChild(mk("text", {
-    x: W/2, y: H/2, "text-anchor": "middle", "dominant-baseline": "middle",
-    fill: "#484f58", "font-size": 13, "font-family": "system-ui, sans-serif"
-  }, msg || "Select a player"));
+  svg.appendChild(mk("rect", {width:W, height:H, fill:"#0d1117", rx:8}));
+  svg.appendChild(mk("text", {x:W/2, y:H/2, "text-anchor":"middle", "dominant-baseline":"middle", fill:"#484f58", "font-size":13, "font-family":"system-ui, sans-serif"}, msg||"Select a player"));
 }
 
 // ── dimension helpers ──────────────────────────────────────────────────────
-
-// Raw (unweighted) average of a dimension's axes.
 function dimScore(data, dim) {
-  const vals = dim.axes
-    .map(ax => data.axes[ax])
-    .filter(v => v !== null && v !== undefined);
-  return vals.length ? vals.reduce((s, v) => s + v, 0) / vals.length : null;
+  const vals = dim.axes.map(ax => data.axes[ax]).filter(v => v!==null&&v!==undefined);
+  return vals.length ? vals.reduce((s,v)=>s+v,0)/vals.length : null;
 }
 
-// Weight badge HTML — shows "×W" next to dim name when W ≠ 1.0.
 function wBadge(dim) {
   const w = weights[dim.key];
-  if (w === 1.0) return "";
-  const cls = w === 0 ? "w-badge zero" : "w-badge";
-  return `<span class="${cls}">×${w.toFixed(1)}</span>`;
+  if (w===1.0) return "";
+  return `<span class="w-badge${w===0?" zero":""}">${w===0?"×0":"×"+w.toFixed(1)}</span>`;
 }
 
-// ── sidebar scorecard ──────────────────────────────────────────────────────
-// Bar width is scaled by dimension weight (capped at 100); raw score shown as number.
-
+// ── sidebar ────────────────────────────────────────────────────────────────
 function renderSidebar(id, data, color) {
   const el = document.getElementById(id);
   if (!data) { el.innerHTML = ""; return; }
-
   let html = "";
   for (const dim of DIMS) {
     const score = dimScore(data, dim);
-    const w     = weights[dim.key];
-    // Bar width = raw score × weight, capped at 100 so it never overflows the track.
-    const barPct = score !== null ? Math.min(100, score * w).toFixed(1) : 0;
-    html += `
-      <div class="sidebar-row">
-        <div class="sidebar-label">
-          <span class="sidebar-dim-name">${dim.name}${wBadge(dim)}</span>
-          <span class="sidebar-score">${score !== null ? Math.round(score) : "—"}</span>
-        </div>
-        <div class="bar-track">
-          <div class="bar-fill" style="width:${barPct}%;background:${color}"></div>
-        </div>
-      </div>`;
+    const barPct = score!==null ? Math.min(100, score*weights[dim.key]).toFixed(1) : 0;
+    html += `<div class="sidebar-row"><div class="sidebar-label"><span class="sidebar-dim-name">${dim.name}${wBadge(dim)}</span><span class="sidebar-score">${score!==null?Math.round(score):"—"}</span></div><div class="bar-track"><div class="bar-fill" style="width:${barPct}%;background:${color}"></div></div></div>`;
   }
-
   const is = data.interior_score;
-  if (is !== null && is !== undefined) {
-    html += `
-      <div class="sidebar-interior">
-        <div class="sidebar-interior-label">Interior score</div>
-        <span class="int-badge">${is}</span>
-      </div>`;
+  if (is!==null&&is!==undefined) {
+    html += `<div class="sidebar-interior"><div class="sidebar-interior-label">Interior score</div><span class="int-badge">${is}</span></div>`;
   }
-
   el.innerHTML = html;
 }
 
-// ── weighted similarity ────────────────────────────────────────────────────
-// sim = 100 − √(Σ w_i·(a_i−b_i)² / Σ w_i)
-// Both __vol and __eff axes in a dimension receive the same weight.
-// Clamped to [0, 100].
-
+// ── similarity ─────────────────────────────────────────────────────────────
 function computeSimilarity(da, db) {
-  let wDiffSum = 0, wSum = 0;
+  let wDiffSum=0, wSum=0;
   for (const dim of DIMS) {
     const w = weights[dim.key];
-    if (w === 0) continue;          // zero-weight dim excluded entirely
+    if (w===0) continue;
     for (const ax of dim.axes) {
-      const va = da.axes[ax], vb = db.axes[ax];
-      if (va !== null && va !== undefined && vb !== null && vb !== undefined) {
-        wDiffSum += w * (va - vb) ** 2;
+      const va=da.axes[ax], vb=db.axes[ax];
+      if (va!==null&&va!==undefined&&vb!==null&&vb!==undefined) {
+        wDiffSum += w*(va-vb)**2;
         wSum     += w;
       }
     }
   }
   if (!wSum) return null;
-  return Math.max(0, Math.min(100, 100 - Math.sqrt(wDiffSum / wSum)));
+  return Math.max(0, Math.min(100, 100-Math.sqrt(wDiffSum/wSum)));
+}
+
+// ── top comps ──────────────────────────────────────────────────────────────
+// Replicates similarity.py's strengths_only algorithm in JS:
+// weight each axis by max(0, query_value − 50), then compute weighted Euclidean
+// distance to every player in the other sport. Score = 100 − √(dist/wSum).
+function getTopComps(queryData, n) {
+  n = n || 3;
+  const otherSport = queryData.sport === 'nba' ? 'soccer' : 'nba';
+
+  const sw = {};
+  let wTotal = 0;
+  for (const ax of AXES) {
+    const val = queryData.axes[ax] !== null && queryData.axes[ax] !== undefined ? queryData.axes[ax] : 50;
+    sw[ax] = Math.max(0, val - 50);
+    wTotal += sw[ax];
+  }
+
+  const scored = [];
+  for (const [key, d] of Object.entries(PLAYER_DATA)) {
+    if (d.sport !== otherSport) continue;
+    let dist=0, wSum=0;
+    for (const ax of AXES) {
+      const wt = wTotal > 0 ? sw[ax] : 1;
+      if (wt === 0) continue;
+      const va = queryData.axes[ax]!==null&&queryData.axes[ax]!==undefined ? queryData.axes[ax] : 50;
+      const vb = d.axes[ax]!==null&&d.axes[ax]!==undefined ? d.axes[ax] : 50;
+      dist += wt*(va-vb)*(va-vb);
+      wSum += wt;
+    }
+    if (!wSum) continue;
+    scored.push({key, data:d, sim: Math.max(0, Math.min(100, 100-Math.sqrt(dist/wSum)))});
+  }
+
+  scored.sort((a,b) => b.sim - a.sim);
+  return scored.slice(0, n);
+}
+
+function renderTopComps(queryData) {
+  const wrap  = document.getElementById("top-comps-wrap");
+  const cards = document.getElementById("comp-cards");
+  if (!queryData) { wrap.style.display="none"; cards.innerHTML=""; return; }
+
+  const comps = getTopComps(queryData, 3);
+  if (!comps.length) { wrap.style.display="none"; return; }
+
+  const otherLabel = queryData.sport === 'nba' ? 'EPL' : 'NBA';
+  cards.innerHTML = comps.map((c, i) => {
+    const sc = Math.round(c.sim);
+    const scCls = sc>=75?"score-high":sc>=55?"score-mid":"score-low";
+    const sCls  = c.data.sport==='nba'?'nba':'soccer';
+    const sLbl  = c.data.sport==='nba'?'NBA':'EPL';
+    // Escape the key for use in onclick — replace quotes that would break the attribute
+    const safeKey = c.key.replace(/'/g, "\\'");
+    return `<div class="comp-card">
+  <div class="comp-rank">#${i+1} ${otherLabel} match</div>
+  <div class="comp-name">${c.data.player}</div>
+  <div class="comp-meta"><span class="sport-badge ${sCls}">${sLbl}</span>${c.data.season}</div>
+  <div class="comp-score-row"><span class="comp-score ${scCls}">${sc}</span><span class="comp-score-label">/ 100 similarity</span></div>
+  <button class="load-b-btn" onclick="window._loadB('${safeKey}')">Load as Player B →</button>
+</div>`;
+  }).join("");
+  wrap.style.display = "";
 }
 
 // ── comparison table ───────────────────────────────────────────────────────
-// Raw scores shown; gap coloring uses weighted gap so zeroed-out dims are neutral.
-
 function renderComparison(da, db) {
   const wrap = document.getElementById("comparison-wrap");
-  if (!da || !db) { wrap.style.display = "none"; return; }
+  if (!da||!db) { wrap.style.display="none"; return; }
   wrap.style.display = "block";
 
   const sim    = computeSimilarity(da, db);
-  const simCls = sim >= 75 ? "sim-green" : sim >= 55 ? "sim-amber" : "sim-red";
-  const simTxt = sim >= 75 ? "Strong match across dimensions"
-               : sim >= 55 ? "Moderate similarity — notable gaps in some dimensions"
-               :             "Low similarity — players fill very different roles";
-
-  // Weight caveat line — only shown when weights are non-default
-  const weightNote = anyNonDefault()
-    ? `<span style="color:#58a6ff;opacity:.85"> · custom weights active</span>`
-    : "";
+  const simCls = sim>=75?"sim-green":sim>=55?"sim-amber":"sim-red";
+  const simTxt = sim>=75?"Strong match across dimensions":sim>=55?"Moderate similarity — notable gaps in some dimensions":"Low similarity — players fill very different roles";
+  const wNote  = anyNonDefault()?`<span style="color:#58a6ff;opacity:.85"> · custom weights active</span>`:"";
 
   let rows = "";
   for (const dim of DIMS) {
-    const sa  = dimScore(da, dim);
-    const sb  = dimScore(db, dim);
-    const w   = weights[dim.key];
-    const gap = (sa !== null && sb !== null) ? sa - sb : null;
-
-    // Gap coloring is driven by the weighted gap — weight=0 → always grey.
-    const wGap = gap !== null ? gap * w : null;
-    let gapCls = "gap-close", gapStr = "—";
-    if (gap !== null) {
-      gapStr = (gap > 0 ? "+" : "") + Math.round(gap);   // raw number always shown
-      if      (wGap >  5) gapCls = "gap-a";
-      else if (wGap < -5) gapCls = "gap-b";
+    const sa=dimScore(da,dim), sb=dimScore(db,dim), w=weights[dim.key];
+    const gap=(sa!==null&&sb!==null)?sa-sb:null;
+    const wGap=gap!==null?gap*w:null;
+    let gapCls="gap-close", gapStr="—";
+    if (gap!==null) {
+      gapStr=(gap>0?"+":"")+Math.round(gap);
+      if      (wGap> 5) gapCls="gap-a";
+      else if (wGap<-5) gapCls="gap-b";
     }
-
-    rows += `<tr>
-      <td>${dim.name}${wBadge(dim)}</td>
-      <td>${sa !== null ? Math.round(sa) : "—"}</td>
-      <td>${sb !== null ? Math.round(sb) : "—"}</td>
-      <td class="${gapCls}">${gapStr}</td>
-    </tr>`;
+    rows += `<tr><td>${dim.name}${wBadge(dim)}</td><td>${sa!==null?Math.round(sa):"—"}</td><td>${sb!==null?Math.round(sb):"—"}</td><td class="${gapCls}">${gapStr}</td></tr>`;
   }
 
-  wrap.innerHTML = `
-    <div class="comparison-card">
-      <div class="comparison-header">
-        <div class="sim-block">
-          <div class="sim-label">Similarity</div>
-          <div class="sim-score ${simCls}">${sim !== null ? Math.round(sim) + "%" : "—"}</div>
-        </div>
-        <div class="sim-desc">
-          ${simTxt}<br>
-          <span style="font-size:10px;opacity:.7">
-            100 − √(weighted mean²-diff across 13 axes)${weightNote} &nbsp;·&nbsp;
-            <span class="sim-green">green ≥ 75</span> &nbsp;
-            <span class="sim-amber">amber ≥ 55</span> &nbsp;
-            <span class="sim-red">red &lt; 55</span>
-          </span>
-        </div>
-      </div>
-      <table class="dim-table">
-        <thead><tr>
-          <th>Dimension</th>
-          <th style="color:var(--a)">Player A</th>
-          <th style="color:var(--b)">Player B</th>
-          <th>Gap (A−B)</th>
-        </tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>`;
+  wrap.innerHTML = `<div class="comparison-card"><div class="comparison-header"><div class="sim-block"><div class="sim-label">Similarity</div><div class="sim-score ${simCls}">${sim!==null?Math.round(sim)+"%":"—"}</div></div><div class="sim-desc">${simTxt}<br><span style="font-size:10px;opacity:.7">100 − √(weighted mean²-diff across 13 axes)${wNote} &nbsp;·&nbsp; <span class="sim-green">green ≥ 75</span> &nbsp;<span class="sim-amber">amber ≥ 55</span> &nbsp;<span class="sim-red">red &lt; 55</span></span></div></div><table class="dim-table"><thead><tr><th>Dimension</th><th style="color:var(--a)">Player A</th><th style="color:var(--b)">Player B</th><th>Gap (A−B)</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
-// ── initial empty state ────────────────────────────────────────────────────
+// ── initial empty radars ───────────────────────────────────────────────────
 ["radar-a","radar-b","radar-overlay"].forEach(id => drawEmpty(id));
 
-// ── render everything ─────────────────────────────────────────────────────
+// ── render all ─────────────────────────────────────────────────────────────
 function renderAll() {
   const da = state.a ? PLAYER_DATA[state.a.key] : null;
   const db = state.b ? PLAYER_DATA[state.b.key] : null;
 
-  // Radars — always unweighted raw percentiles
-  if (da) drawRadar("radar-a", [{ data: da, color: COLOR_A }]);
+  renderTopComps(da);
+
+  if (da) drawRadar("radar-a", [{data:da, color:COLOR_A}]);
   else    drawEmpty("radar-a");
 
-  if (db) drawRadar("radar-b", [{ data: db, color: COLOR_B }]);
+  if (db) drawRadar("radar-b", [{data:db, color:COLOR_B}]);
   else    drawEmpty("radar-b");
 
-  if (da || db) {
+  if (da||db) {
     drawRadar("radar-overlay", [
-      da ? { data: da, color: COLOR_A, alpha: 0.15 }               : null,
-      db ? { data: db, color: COLOR_B, dashed: true, alpha: 0.10 } : null,
+      da?{data:da,color:COLOR_A,alpha:0.15}:null,
+      db?{data:db,color:COLOR_B,dashed:true,alpha:0.10}:null,
     ].filter(Boolean));
   } else {
-    drawEmpty("radar-overlay", "Select two players to overlay");
+    drawEmpty("radar-overlay","Select two players to overlay");
   }
 
-  // Sidebars + comparison use weights
   renderSidebar("sidebar-a", da, COLOR_A);
   renderSidebar("sidebar-b", db, COLOR_B);
   renderComparison(da, db);
 }
 
-// Lightweight re-render for when only weights change (no radar redraw needed).
 function renderWeighted() {
   const da = state.a ? PLAYER_DATA[state.a.key] : null;
   const db = state.b ? PLAYER_DATA[state.b.key] : null;
   renderSidebar("sidebar-a", da, COLOR_A);
   renderSidebar("sidebar-b", db, COLOR_B);
   renderComparison(da, db);
-  // Update the active-dot indicator on the toggle button
-  document.getElementById("weights-active-dot")
-    .classList.toggle("visible", anyNonDefault());
+  document.getElementById("weights-active-dot").classList.toggle("visible", anyNonDefault());
 }
 
-// ── weight panel setup ─────────────────────────────────────────────────────
-
+// ── clear ──────────────────────────────────────────────────────────────────
 function updateSliderFill(slider) {
-  const pct = (parseFloat(slider.value) / parseFloat(slider.max)) * 100;
-  slider.style.background =
-    `linear-gradient(to right, #58a6ff ${pct}%, #21262d ${pct}%)`;
+  const pct = (parseFloat(slider.value)/parseFloat(slider.max))*100;
+  slider.style.background = `linear-gradient(to right, #58a6ff ${pct}%, #21262d ${pct}%)`;
 }
 
+function resetSliders() {
+  for (const dim of DIMS) {
+    const slider = document.getElementById("slider-"+dim.key);
+    const valEl  = document.getElementById("weight-val-"+dim.key);
+    slider.value = "1"; weights[dim.key] = 1.0;
+    valEl.textContent = "1.0×"; valEl.className = "weight-val";
+    updateSliderFill(slider);
+  }
+  document.getElementById("weights-active-dot").classList.remove("visible");
+}
+
+// CLEAR BUG FIX: clearSide was a local function inside initApp, but the inline
+// onclick="clearSide(...)" runs in global scope — it couldn't find the function.
+// window.clearSide exposes it globally so the onclick attribute works.
+function clearSide(side) {
+  state[side] = null;
+  document.getElementById("search-"+side).value = "";
+  document.getElementById("drop-"+side).classList.remove("open");
+  renderSelectedInfo(side, null);
+  renderAll();
+}
+window.clearSide = clearSide;
+
+function clearAll() {
+  state.a = null; state.b = null;
+  ["a","b"].forEach(side => {
+    document.getElementById("search-"+side).value = "";
+    document.getElementById("drop-"+side).classList.remove("open");
+    renderSelectedInfo(side, null);
+  });
+  resetSliders();
+  renderAll();
+}
+
+// ── weight panel ───────────────────────────────────────────────────────────
 function setupWeightPanel() {
-  // Toggle open/close
   const toggle = document.getElementById("weights-toggle");
   const body   = document.getElementById("weights-body");
   toggle.addEventListener("click", () => {
     const open = body.classList.toggle("open");
     toggle.classList.toggle("active", open);
-    toggle.textContent = "Dimension weights " + (open ? "▴" : "▾");
+    toggle.textContent = "Dimension weights "+(open?"▴":"▾");
   });
-
-  // Wire each slider
   for (const dim of DIMS) {
-    const slider = document.getElementById("slider-" + dim.key);
-    const valEl  = document.getElementById("weight-val-" + dim.key);
-
-    // Set initial fill (1.0 / 3.0 = 33.3%)
+    const slider = document.getElementById("slider-"+dim.key);
+    const valEl  = document.getElementById("weight-val-"+dim.key);
     updateSliderFill(slider);
-
     slider.addEventListener("input", () => {
       const w = parseFloat(slider.value);
       weights[dim.key] = w;
-      valEl.textContent = w.toFixed(1) + "×";
-      valEl.className   = "weight-val" + (w === 0 ? " zero" : "");
+      valEl.textContent = w.toFixed(1)+"×";
+      valEl.className   = "weight-val"+(w===0?" zero":"");
       updateSliderFill(slider);
       renderWeighted();
     });
   }
-
-  // Reset all to 1.0
-  document.getElementById("weights-reset").addEventListener("click", () => {
-    for (const dim of DIMS) {
-      const slider = document.getElementById("slider-" + dim.key);
-      const valEl  = document.getElementById("weight-val-" + dim.key);
-      slider.value      = "1";
-      weights[dim.key]  = 1.0;
-      valEl.textContent = "1.0×";
-      valEl.className   = "weight-val";
-      updateSliderFill(slider);
-    }
-    renderWeighted();
-  });
+  document.getElementById("weights-reset").addEventListener("click", () => { resetSliders(); renderWeighted(); });
+  document.getElementById("clear-all-btn").addEventListener("click", clearAll);
 }
 
-// ── picker logic ───────────────────────────────────────────────────────────
+// ── picker ─────────────────────────────────────────────────────────────────
 function filterEntries(query, sport) {
   const q = query.trim().toLowerCase();
-  return ENTRIES.filter(e =>
-    (!q || e.search.includes(q)) &&
-    (sport === "all" || e.sport === sport)
-  ).slice(0, 60);
+  return ENTRIES.filter(e => (!q||e.search.includes(q)) && (sport==="all"||e.sport===sport)).slice(0,60);
 }
 
 function sportBadge(sport) {
-  const cls = sport === "nba" ? "nba" : "soccer";
-  const lbl = sport === "nba" ? "NBA" : "EPL";
-  return `<span class="sport-badge ${cls}">${lbl}</span>`;
+  return `<span class="sport-badge ${sport==="nba"?"nba":"soccer"}">${sport==="nba"?"NBA":"EPL"}</span>`;
 }
 
 function renderSelectedInfo(side, entry) {
-  const el = document.getElementById("sel-" + side);
-  if (!entry) {
-    el.innerHTML = `<span style="color:var(--muted)">No player selected</span>`;
-    return;
-  }
-  el.innerHTML = `
-    ${sportBadge(entry.sport)}
-    <span class="selected-name">${entry.player}</span>
-    <span style="color:var(--muted);font-size:11px">${entry.season}</span>
-    <button class="clear-btn" onclick="clearSide('${side}')">✕ clear</button>
-  `;
+  const el = document.getElementById("sel-"+side);
+  if (!entry) { el.innerHTML = `<span style="color:var(--muted)">No player selected</span>`; return; }
+  el.innerHTML = `${sportBadge(entry.sport)}<span class="selected-name">${entry.player}</span><span style="color:var(--muted);font-size:11px">${entry.season}</span><button class="clear-btn" onclick="window.clearSide('${side}')">✕ clear</button>`;
 }
 
-function clearSide(side) {
-  state[side] = null;
-  document.getElementById("search-" + side).value = "";
-  renderSelectedInfo(side, null);
+// Exposed for "Load as Player B →" buttons in top-comps cards
+window._loadB = function(key) {
+  const entry = ENTRIES.find(e => e.key === key);
+  if (!entry) return;
+  state.b = entry;
+  document.getElementById("search-b").value = "";
+  document.getElementById("drop-b").classList.remove("open");
+  renderSelectedInfo("b", entry);
   renderAll();
-}
+};
 
 function setupPicker(side) {
-  const input = document.getElementById("search-" + side);
-  const drop  = document.getElementById("drop-"   + side);
+  const input = document.getElementById("search-"+side);
+  const drop  = document.getElementById("drop-"+side);
   let focused = -1;
 
   function showDrop(items) {
-    if (!items.length) {
-      drop.innerHTML = `<div class="no-results">No players found</div>`;
-    } else {
-      drop.innerHTML = items.map((e, idx) =>
-        `<div class="dd-item" data-idx="${idx}" data-key="${e.key}">
-           <span class="player-name">${e.player}</span>
-           ${sportBadge(e.sport)}
-           <span class="season-tag">${e.season}</span>
-         </div>`
-      ).join("");
-    }
-    drop.classList.add("open");
-    focused = -1;
-    drop.querySelectorAll(".dd-item").forEach((el, idx) => {
-      el.addEventListener("mousedown", ev => {
-        ev.preventDefault();
-        selectEntry(side, items[idx]);
-      });
+    drop.innerHTML = !items.length
+      ? `<div class="no-results">No players found</div>`
+      : items.map((e,idx) => `<div class="dd-item" data-idx="${idx}" data-key="${e.key}"><span class="player-name">${e.player}</span>${sportBadge(e.sport)}<span class="season-tag">${e.season}</span></div>`).join("");
+    drop.classList.add("open"); focused = -1;
+    drop.querySelectorAll(".dd-item").forEach((el,idx) => {
+      el.addEventListener("mousedown", ev => { ev.preventDefault(); selectEntry(items[idx]); });
     });
   }
 
-  function hideDrop() {
-    drop.classList.remove("open");
-    focused = -1;
-  }
+  function hideDrop() { drop.classList.remove("open"); focused = -1; }
 
-  function selectEntry(side, entry) {
+  function selectEntry(entry) {
     state[side] = entry;
-    input.value = "";
-    hideDrop();
+    input.value = ""; hideDrop();
     renderSelectedInfo(side, entry);
     renderAll();
   }
 
-  input.addEventListener("input", () => {
-    const q = input.value;
-    if (!q.trim()) { hideDrop(); return; }
-    showDrop(filterEntries(q, sportFilter[side]));
-  });
-
+  input.addEventListener("input", () => { const q=input.value; if (!q.trim()){hideDrop();return;} showDrop(filterEntries(q,sportFilter[side])); });
+  input.addEventListener("focus", () => { if (input.value.trim()) showDrop(filterEntries(input.value,sportFilter[side])); });
   input.addEventListener("keydown", ev => {
     const items = drop.querySelectorAll(".dd-item");
-    if (ev.key === "ArrowDown") {
-      focused = Math.min(focused + 1, items.length - 1);
-      items.forEach((el, i) => el.classList.toggle("focused", i === focused));
-      ev.preventDefault();
-    } else if (ev.key === "ArrowUp") {
-      focused = Math.max(focused - 1, 0);
-      items.forEach((el, i) => el.classList.toggle("focused", i === focused));
-      ev.preventDefault();
-    } else if (ev.key === "Enter" && focused >= 0) {
-      items[focused].dispatchEvent(new MouseEvent("mousedown"));
-    } else if (ev.key === "Escape") {
-      hideDrop();
-    }
+    if      (ev.key==="ArrowDown")           { focused=Math.min(focused+1,items.length-1); items.forEach((el,i)=>el.classList.toggle("focused",i===focused)); ev.preventDefault(); }
+    else if (ev.key==="ArrowUp")             { focused=Math.max(focused-1,0); items.forEach((el,i)=>el.classList.toggle("focused",i===focused)); ev.preventDefault(); }
+    else if (ev.key==="Enter"&&focused>=0)   { items[focused].dispatchEvent(new MouseEvent("mousedown")); }
+    else if (ev.key==="Escape")              { hideDrop(); }
   });
-
-  input.addEventListener("focus", () => {
-    if (input.value.trim()) showDrop(filterEntries(input.value, sportFilter[side]));
-  });
-
-  document.addEventListener("click", ev => {
-    if (!ev.target.closest("#card-" + (side === "a" ? "a" : "b"))) hideDrop();
-  });
-
-  // Sport filter tabs
-  document.getElementById("filters-" + side).querySelectorAll(".filter-btn").forEach(btn => {
+  document.addEventListener("click", ev => { if (!ev.target.closest("#card-"+side)) hideDrop(); });
+  document.getElementById("filters-"+side).querySelectorAll(".filter-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       sportFilter[side] = btn.dataset.sport;
-      document.getElementById("filters-" + side).querySelectorAll(".filter-btn")
-        .forEach(b => b.classList.toggle("active", b === btn));
-      if (drop.classList.contains("open")) {
-        showDrop(filterEntries(input.value, sportFilter[side]));
-      }
+      document.getElementById("filters-"+side).querySelectorAll(".filter-btn").forEach(b=>b.classList.toggle("active",b===btn));
+      if (drop.classList.contains("open")) showDrop(filterEntries(input.value,sportFilter[side]));
     });
   });
 }
 
+// ── database tab ───────────────────────────────────────────────────────────
+const dbState = {query:"", sport:"all", season:"all", filterAx:"", filterMin:0, sortKey:"player", sortDir:1, page:0, pageSize:50};
+
+const DB_ROWS = Object.entries(PLAYER_DATA).map(([key,d]) => ({key, player:d.player, sport:d.sport, season:d.season, axes:d.axes}));
+
+function getColVal(row, col) {
+  if (col.ax !== null) {
+    const v = row.axes[col.ax];
+    return (v!==null&&v!==undefined) ? v : null;
+  }
+  return row[col.key] !== undefined ? row[col.key] : null;
+}
+
+function setupDb() {
+  const seasons = [...new Set(DB_ROWS.map(r=>r.season))].sort();
+  const sel = document.getElementById("db-season");
+  for (const s of seasons) { const o=document.createElement("option"); o.value=s; o.textContent=s; sel.appendChild(o); }
+
+  const thead = document.getElementById("db-thead");
+  thead.innerHTML = "<tr>"+DB_COLS.map(c=>`<th data-key="${c.key}">${c.label}</th>`).join("")+"</tr>";
+  thead.querySelectorAll("th").forEach(th => {
+    th.addEventListener("click", () => {
+      const k=th.dataset.key;
+      dbState.sortDir = (dbState.sortKey===k) ? -dbState.sortDir : 1;
+      dbState.sortKey = k; dbState.page = 0;
+      renderDbTable();
+    });
+  });
+
+  document.getElementById("db-search").addEventListener("input",  e => { dbState.query=e.target.value.toLowerCase(); dbState.page=0; renderDbTable(); });
+  document.getElementById("db-sport").addEventListener("change",   e => { dbState.sport=e.target.value;  dbState.page=0; renderDbTable(); });
+  document.getElementById("db-season").addEventListener("change",  e => { dbState.season=e.target.value; dbState.page=0; renderDbTable(); });
+  document.getElementById("db-dim").addEventListener("change",     e => { dbState.filterAx=e.target.value; dbState.page=0; renderDbTable(); });
+  document.getElementById("db-min").addEventListener("input",      e => { dbState.filterMin=parseFloat(e.target.value)||0; dbState.page=0; renderDbTable(); });
+}
+
+function renderDbTable() {
+  let rows = DB_ROWS.filter(r => {
+    if (dbState.query && !r.player.toLowerCase().includes(dbState.query)) return false;
+    if (dbState.sport!=="all" && r.sport!==dbState.sport) return false;
+    if (dbState.season!=="all" && r.season!==dbState.season) return false;
+    if (dbState.filterAx && dbState.filterMin>0) {
+      const v=r.axes[dbState.filterAx]; if (v===null||v===undefined||v<dbState.filterMin) return false;
+    }
+    return true;
+  });
+
+  const sortCol = DB_COLS.find(c=>c.key===dbState.sortKey)||DB_COLS[0];
+  rows.sort((a,b) => {
+    const va=getColVal(a,sortCol), vb=getColVal(b,sortCol);
+    if (va===null&&vb===null) return 0;
+    if (va===null) return 1; if (vb===null) return -1;
+    const cmp = typeof va==="string" ? va.localeCompare(vb) : va-vb;
+    return cmp*dbState.sortDir;
+  });
+
+  const total=rows.length, ps=dbState.pageSize;
+  const pageCount=Math.max(1,Math.ceil(total/ps));
+  dbState.page=Math.min(dbState.page,pageCount-1);
+  const start=dbState.page*ps, end=Math.min(start+ps,total);
+  const pageRows=rows.slice(start,end);
+
+  document.getElementById("db-count").textContent = total.toLocaleString()+" players";
+
+  document.getElementById("db-thead").querySelectorAll("th").forEach(th => {
+    th.classList.remove("sort-asc","sort-desc");
+    if (th.dataset.key===dbState.sortKey) th.classList.add(dbState.sortDir===1?"sort-asc":"sort-desc");
+  });
+
+  const tbody = document.getElementById("db-tbody");
+  if (!pageRows.length) {
+    tbody.innerHTML = `<tr><td colspan="${DB_COLS.length}" style="text-align:center;padding:20px;color:var(--muted)">No players match the current filters.</td></tr>`;
+  } else {
+    tbody.innerHTML = pageRows.map(row => {
+      const cells = DB_COLS.map(col => {
+        const v = getColVal(row, col);
+        if (col.type==="str") {
+          if (col.key==="sport") return `<td>${sportBadge(v)}</td>`;
+          return `<td>${v||""}</td>`;
+        }
+        if (v===null||v===undefined) return `<td class="cv-low">—</td>`;
+        const cls = v>=70?"cv-high":v>=40?"cv-mid":"cv-low";
+        return `<td class="${cls}">${Math.round(v)}</td>`;
+      });
+      return `<tr data-key="${row.key}">${cells.join("")}</tr>`;
+    }).join("");
+
+    tbody.querySelectorAll("tr[data-key]").forEach(tr => {
+      tr.addEventListener("click", () => {
+        const entry = ENTRIES.find(e=>e.key===tr.dataset.key);
+        if (!entry) return;
+        state.a = entry;
+        document.getElementById("search-a").value = "";
+        renderSelectedInfo("a", entry);
+        renderAll();
+        switchTab("comparison");
+      });
+    });
+  }
+
+  const pag = document.getElementById("db-pagination");
+  if (pageCount<=1) { pag.innerHTML=""; return; }
+  pag.innerHTML = `<button class="db-page-btn" id="db-prev" ${dbState.page===0?"disabled":""}>← Prev</button><span>Showing ${(start+1).toLocaleString()}–${end.toLocaleString()} of ${total.toLocaleString()}</span><button class="db-page-btn" id="db-next" ${dbState.page>=pageCount-1?"disabled":""}>Next →</button>`;
+  document.getElementById("db-prev")?.addEventListener("click", () => { dbState.page--; renderDbTable(); });
+  document.getElementById("db-next")?.addEventListener("click", () => { dbState.page++; renderDbTable(); });
+}
+
+// ── boot ───────────────────────────────────────────────────────────────────
 setupPicker("a");
 setupPicker("b");
 setupWeightPanel();
+setupDb();
+
 } // end initApp
 </script>
 </body>
